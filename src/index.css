@@ -1,0 +1,657 @@
+:root {
+  color: #e5eefb;
+  background: #08111f;
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+  font-synthesis: none;
+  line-height: 1.5;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  --bg-base: #08111f;
+  --bg-deep: #020617;
+  --panel: rgba(15, 23, 42, 0.78);
+  --panel-soft: rgba(255, 255, 255, 0.05);
+  --panel-strong: rgba(255, 255, 255, 0.08);
+  --border: rgba(148, 163, 184, 0.2);
+  --text-primary: #e5eefb;
+  --text-secondary: #a9bbd4;
+  --text-muted: #7e90ac;
+  --brand: #60a5fa;
+  --brand-soft: #93c5fd;
+  --success: #4ade80;
+  --success-soft: rgba(74, 222, 128, 0.14);
+  --emerald: #10b981;
+  --purple: #a78bfa;
+  --shadow: 0 24px 50px rgba(2, 6, 23, 0.4);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-height: 100%;
+  background:
+    radial-gradient(circle at top left, rgba(37, 99, 235, 0.18), transparent 26%),
+    radial-gradient(circle at top right, rgba(14, 165, 233, 0.1), transparent 24%),
+    linear-gradient(140deg, #0f172a 0%, #08111f 55%, #020617 100%);
+}
+
+body {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  color: var(--text-primary);
+  background: transparent;
+}
+
+a {
+  color: inherit;
+}
+
+button,
+input,
+select {
+  font: inherit;
+}
+
+#root {
+  min-height: 100vh;
+}
+
+.app-shell {
+  min-height: 100vh;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  z-index: 20;
+  padding: 0.65rem 0.9rem;
+  border-radius: 0.5rem;
+  background: #fff;
+  color: #0f172a;
+  text-decoration: none;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+.site-nav-shell {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  background: rgba(2, 6, 23, 0.72);
+  border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.site-nav {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.brand-mark {
+  color: var(--text-primary);
+  text-decoration: none;
+  font-size: 0.98rem;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+.nav-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+}
+
+.nav-link {
+  padding: 0.45rem 0.8rem;
+  border: 1px solid transparent;
+  border-radius: 0.6rem;
+  color: var(--text-secondary);
+  text-decoration: none;
+  transition: color 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.nav-link:hover,
+.nav-link:focus-visible {
+  color: var(--text-primary);
+  border-color: rgba(96, 165, 250, 0.3);
+  background: rgba(96, 165, 250, 0.1);
+  outline: none;
+}
+
+.nav-link.is-active {
+  color: #dbeafe;
+  border-color: rgba(96, 165, 250, 0.3);
+  background: rgba(96, 165, 250, 0.12);
+}
+
+.container {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 2rem 1.5rem;
+}
+
+.page-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.header,
+.roadmap-header {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.header h1,
+.roadmap-header h1 {
+  margin: 0;
+  font-size: clamp(2.25rem, 4vw, 3.75rem);
+  line-height: 1.02;
+  font-weight: 800;
+}
+
+.header p,
+.roadmap-header p,
+.detail-summary {
+  max-width: 52rem;
+  margin: 0;
+  color: var(--text-secondary);
+  font-size: 1rem;
+}
+
+.glass-card,
+.search-filter,
+.info-section,
+.guide-section,
+.stats-section,
+.mission,
+.team-card,
+.contact-card,
+.roadmap-section {
+  background: var(--panel-soft);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  -webkit-backdrop-filter: blur(14px);
+  backdrop-filter: blur(14px);
+  box-shadow: var(--shadow);
+}
+
+.search-filter,
+.info-section,
+.guide-section,
+.stats-section,
+.mission,
+.team-card,
+.contact-card,
+.roadmap-section {
+  padding: 1.5rem;
+}
+
+.search-filter {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+input[type='text'],
+select {
+  width: 100%;
+  border: 1px solid rgba(148, 163, 184, 0.18);
+  border-radius: 0.65rem;
+  background: rgba(15, 23, 42, 0.7);
+  color: var(--text-primary);
+  padding: 0.85rem 1rem;
+  outline: none;
+  transition: border-color 180ms ease, box-shadow 180ms ease, background 180ms ease;
+}
+
+input[type='text']::placeholder {
+  color: var(--text-muted);
+}
+
+input[type='text']:focus,
+select:focus {
+  border-color: rgba(96, 165, 250, 0.6);
+  box-shadow: 0 0 0 4px rgba(96, 165, 250, 0.12);
+}
+
+.filterselect {
+  appearance: none;
+  background-image:
+    linear-gradient(45deg, transparent 50%, #e5eefb 50%),
+    linear-gradient(135deg, #e5eefb 50%, transparent 50%);
+  background-position:
+    calc(100% - 1.15rem) calc(50% - 0.15rem),
+    calc(100% - 0.8rem) calc(50% - 0.15rem);
+  background-size: 0.4rem 0.4rem, 0.4rem 0.4rem;
+  background-repeat: no-repeat;
+  padding-right: 2.6rem;
+}
+
+.completion-counter {
+  color: var(--text-secondary);
+  text-align: right;
+}
+
+.roadmap-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.5rem;
+}
+
+.roadmap-card {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  padding: 1.25rem;
+  min-height: 16rem;
+  transition: transform 180ms ease, border-color 180ms ease, background 180ms ease;
+}
+
+.roadmap-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(96, 165, 250, 0.34);
+  background: var(--panel-strong);
+}
+
+.roadmap-card__top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.roadmap-card__content {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  flex: 1;
+}
+
+.roadmap-card__content h2 {
+  margin: 0;
+  font-size: 1.2rem;
+  line-height: 1.25;
+}
+
+.roadmap-card__content p {
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+.roadmap-card__actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.completion-toggle {
+  padding: 0.42rem 0.72rem;
+  border: 1px solid rgba(96, 165, 250, 0.22);
+  border-radius: 999px;
+  background: rgba(96, 165, 250, 0.08);
+  color: var(--brand-soft);
+  cursor: pointer;
+  transition: background 180ms ease, border-color 180ms ease, color 180ms ease;
+}
+
+.completion-toggle:hover,
+.completion-toggle:focus-visible {
+  border-color: rgba(96, 165, 250, 0.45);
+  background: rgba(96, 165, 250, 0.15);
+  outline: none;
+}
+
+.completion-toggle.is-complete {
+  border-color: rgba(74, 222, 128, 0.35);
+  background: var(--success-soft);
+  color: #b9fbcf;
+}
+
+.completed {
+  border-color: rgba(74, 222, 128, 0.35);
+}
+
+.role-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.72rem;
+  border-radius: 999px;
+  background: rgba(96, 165, 250, 0.12);
+  color: var(--brand-soft);
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.role-tag--blue {
+  background: rgba(96, 165, 250, 0.14);
+  color: #bfdbfe;
+}
+
+.role-tag--green {
+  background: rgba(74, 222, 128, 0.14);
+  color: #bbf7d0;
+}
+
+.role-tag--purple {
+  background: rgba(167, 139, 250, 0.14);
+  color: #ddd6fe;
+}
+
+.text-link,
+.content-list a,
+.back-link,
+.team-social a,
+.social-links a {
+  color: var(--brand);
+  text-decoration: none;
+}
+
+.text-link:hover,
+.text-link:focus-visible,
+.content-list a:hover,
+.content-list a:focus-visible,
+.back-link:hover,
+.back-link:focus-visible,
+.team-social a:hover,
+.team-social a:focus-visible,
+.social-links a:hover,
+.social-links a:focus-visible {
+  color: var(--brand-soft);
+  text-decoration: underline;
+  outline: none;
+}
+
+.info-section h2,
+.guide-section h2,
+.stats-section h2,
+.mission h2,
+.team-card h2,
+.contact-card h2,
+.section-title {
+  margin: 0 0 1rem;
+  font-size: 1.45rem;
+  font-weight: 700;
+}
+
+.info-section p,
+.guide-section p,
+.mission p,
+.contact-card p,
+.contact-list,
+.section-copy {
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+.section-title {
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid rgba(148, 163, 184, 0.18);
+  color: #dbeafe;
+}
+
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.stat-number {
+  margin: 0 0 0.25rem;
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.stat-number.blue {
+  color: var(--brand);
+}
+
+.stat-number.green {
+  color: var(--success);
+}
+
+.stat-number.purple {
+  color: var(--purple);
+}
+
+.stat-label {
+  color: var(--text-secondary);
+}
+
+.content-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+}
+
+.content-list li {
+  color: var(--text-secondary);
+}
+
+.content-list li::before {
+  content: '';
+  display: inline-block;
+  width: 0.45rem;
+  height: 0.45rem;
+  margin-right: 0.75rem;
+  border-radius: 999px;
+  background: rgba(96, 165, 250, 0.9);
+  vertical-align: middle;
+  transform: translateY(-1px);
+}
+
+.back-link-container {
+  text-align: center;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.72rem 1rem;
+  border-radius: 0.7rem;
+  border: 1px solid rgba(96, 165, 250, 0.22);
+  background: rgba(96, 165, 250, 0.08);
+}
+
+.team-grid,
+.jobs-grid {
+  display: grid;
+  grid-template-columns: repeat(1, minmax(0, 1fr));
+  gap: 1.25rem;
+}
+
+.team-member,
+.job-card {
+  display: flex;
+  flex-direction: column;
+  gap: 0.9rem;
+  padding: 1.25rem;
+  border-radius: 0.75rem;
+  background: rgba(15, 23, 42, 0.52);
+  border: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.team-member h3,
+.job-card__title {
+  margin: 0;
+  font-size: 1.1rem;
+}
+
+.team-member p {
+  margin: 0;
+  color: var(--text-secondary);
+}
+
+.member-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 0.75rem;
+  font-size: 0.82rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+}
+
+.member-badge--blue {
+  background: rgba(96, 165, 250, 0.15);
+  color: #bfdbfe;
+}
+
+.member-badge--green {
+  background: rgba(74, 222, 128, 0.15);
+  color: #bbf7d0;
+}
+
+.member-badge--purple {
+  background: rgba(167, 139, 250, 0.15);
+  color: #ddd6fe;
+}
+
+.team-social,
+.social-links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+}
+
+.contact-list {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.contact-list li {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.contact-label {
+  color: var(--text-muted);
+  min-width: 3rem;
+}
+
+.job-card__title--blue {
+  color: #bfdbfe;
+}
+
+.job-card__title--purple {
+  color: #ddd6fe;
+}
+
+.job-card__title--green {
+  color: #bbf7d0;
+}
+
+.empty-state {
+  text-align: center;
+}
+
+.footer {
+  max-width: 72rem;
+  margin: 0 auto;
+  padding: 1.5rem;
+  color: var(--text-muted);
+  text-align: center;
+  border-top: 1px solid rgba(148, 163, 184, 0.12);
+}
+
+.footer p {
+  margin: 0.35rem 0;
+}
+
+@media (min-width: 768px) {
+  .search-filter {
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .roadmap-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .team-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .jobs-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (min-width: 1024px) {
+  .roadmap-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 720px) {
+  .site-nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .nav-links {
+    width: 100%;
+  }
+
+  .nav-link {
+    flex: 1 1 auto;
+    text-align: center;
+  }
+
+  .roadmap-card__top {
+    flex-direction: column;
+  }
+
+  .contact-list li {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.25rem;
+  }
+}
