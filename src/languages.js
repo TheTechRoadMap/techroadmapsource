@@ -1098,6 +1098,22 @@ export const languages = [
       'Familiarity with enterprise IT environments.',
     ],
   },
+
+  // Next.Js Framework\
+  // Finish this later
+  {
+    id: 'nextjs',
+    title: 'Next.js',
+    category: 'framework',
+    blurb: 'A React framework for building server-side rendered and statically generated web applications.',
+    focusAreas: [
+      'Server-Side Rendering (SSR): Rendering pages on the server for better SEO and performance.',
+      'Static Site Generation (SSG): Pre-rendering pages at build time for fast load times.',
+      'API Routes: Building backend endpoints within a Next.js application.',
+      'Image Optimization: Using the built-in Image component for responsive images.',
+    ],
+  },
+
   // Google Cloud Technology
   {
     id: 'gcp',
