@@ -23,7 +23,7 @@ export default function Layout() {
       <header className="site-nav-shell">
         <div className="site-nav">
           <NavLink className="brand-mark" to="/">
-            Tech Roadmaps
+            TechRoadMaps
           </NavLink>
 
           <nav className="nav-links" aria-label="Primary">
