@@ -7,7 +7,7 @@ const roadmapPages = import.meta.glob('../../../roadmaps/*.html', { //Roadmap Me
   query: '?raw',
 });
 
-const languagePages = import.meta.glob('../../../languages/*.html', {
+const languagePages = import.meta.glob('../../../languages/*.html', { //import of language pages for parsing
   eager: true,
   import: 'default',
   query: '?raw',
@@ -483,7 +483,7 @@ export const aboutContent = {
       ],
     },
     {
-      name: 'David Molefi',
+      name: 'Mahlale Molefi',
       role: 'Junior Software Developer',
       badge: 'DEV',
       accent: 'green',
