@@ -483,7 +483,7 @@ export const aboutContent = {
       ],
     },
     {
-      name: 'David Molefi',
+      name: 'Mahlale Molefi',
       role: 'Junior Software Developer',
       badge: 'DEV',
       accent: 'green',
