@@ -417,38 +417,34 @@ export const homeStats = {
 
 export const aboutContent = {
   mission:
-    'Tech Roadmaps exists to make tech career growth easier to navigate. The platform keeps the original goal of guiding beginners and working professionals, while organizing the journey into clearer paths, practical resources, and up-to-date technology signals.',
+    'Tech Roadmaps helps people turn curiosity into career momentum by organizing the smartest next steps in software, cloud, data, security, and digital product work. We focus on practical guidance, clear learning paths, and relatable support for beginners and professionals alike.',
   team: [
     {
       name: 'Tumelo Kgware',
       role: 'Project Manager',
       badge: 'PM',
       accent: 'blue',
+      avatar: 'FaUser',
       description:
-        'Computer Networking Graduate with experience in project coordination, planning, and delivery support.',
+        'Project coordinator and delivery lead focused on keeping the roadmap experience organized, thoughtful, and easy to follow.',
+      contactEmail: 'tumelo@techroadmap.co.za',
       links: [
         {
-          href: 'https://www.linkedin.com/in/tumelo-kgware',
+          href: 'https://www.linkedin.com/in/reginald-kgware-42b53731a',
           label: 'LinkedIn',
-        },
-        {
-          href: 'tel:+27721496260',
-          label: 'Call',
         },
       ],
     },
     {
       name: 'Mosia Marate',
-      role: 'Software Developer',
+      role: 'Senior Software Developer',
       badge: 'DEV',
       accent: 'green',
+      avatar: 'FaCode',
       description:
-        'Computer Networking Graduate focused on web development, product delivery, and digital strategy.',
+        'Developer focused on building polished products, strengthening the content experience, and connecting practical learning with real delivery.',
+      contactEmail: 'mosia@techroadmap.co.za',
       links: [
-        {
-          href: 'https://github.com/mosiamarate',
-          label: 'GitHub',
-        },
         {
           href: 'https://www.linkedin.com/in/mosiamarate',
           label: 'LinkedIn',
@@ -460,33 +456,61 @@ export const aboutContent = {
       role: 'Software Tester',
       badge: 'QA',
       accent: 'purple',
+      avatar: 'FaVial',
       description:
-        'Computer Networking Graduate with a focus on quality assurance, validation, and software reliability.',
+        'Quality-focused contributor who helps keep the platform reliable, well-tested, and dependable for everyday learners.',
+      contactEmail: 'molemo@techroadmap.co.za',
       links: [
         {
-          href: 'https://www.linkedin.com/in/molemo-rantsoareng',
+          href: 'https://www.linkedin.com/in/molemo-rantsoareng-7247b3283',
           label: 'LinkedIn',
         },
+      ],
+    },
+    {
+      name: 'Lehlohonolo Sithole',
+      role: 'Marketing Specialist',
+      badge: 'MKT',
+      accent: 'orange',
+      avatar: 'FaBullhorn',
+      description:
+        'Marketing-minded contributor working on the voice, messaging, and community feel behind the roadmap experience.',
+      links: [
         {
-          href: 'tel:+27721499260',
-          label: 'Call',
+          href: 'https://www.linkedin.com/in/lehlohonolo-sithole-a14562374?utm_source=share_via&utm_content=profile&utm_medium=member_android',
+          label: 'LinkedIn',
+        },
+      ],
+    },
+    {
+      name: 'David Molefi',
+      role: 'Junior Software Developer',
+      badge: 'DEV',
+      accent: 'green',
+      avatar: 'FaRocket',
+      description:
+        'Developer learning the craft through practical product work, thoughtful problem solving, and continuous improvement.',
+      links: [
+        {
+          href: 'https://www.linkedin.com/in/mahlale-molefi-547207307?utm_source=share_via&utm_content=profile&utm_medium=member_ios',
+          label: 'LinkedIn',
         },
       ],
     },
   ],
-  contactEmail: 'mosiathedeveloper@gmail.com',
+  contactEmail: 'theroadm@gmail.com',
   socialLinks: [
     {
-      href: 'https://github.com/mosiamarate',
-      label: 'GitHub',
-    },
-    {
-      href: 'https://www.linkedin.com/in/mosiamarate',
+      href: 'https://www.linkedin.com/company/tech-roadmaps',
       label: 'LinkedIn',
     },
     {
-      href: 'tel:+27721496260',
-      label: 'Phone',
+      href: 'https://www.instagram.com/techroad_map?igsh=NmJrNGg2c2t4dnM4',
+      label: 'Instagram',
+    },
+    {
+      href: 'https://vm.tiktok.com/ZS9rkSMPCpNef-ulaKO/',
+      label: 'TikTok',
     },
   ],
 };

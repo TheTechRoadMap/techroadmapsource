@@ -6,7 +6,7 @@ import { roadmapCategories } from './roadmaps.js';
 
 export default function Home() {
   usePageMeta(
-    'Tech Roadmaps',
+    'TechRoadMap',
     'Explore tech career roadmaps, curated learning resources, and current development guidance in one SPA.',
   );
 
@@ -38,7 +38,7 @@ export default function Home() {
         },
       ]}
       subtitle="Structured guidance for navigating software, cloud, data, security, and adjacent tech careers."
-      title="Tech Roadmaps"
+      title="The TechRoadMap"
     />
   );
 }

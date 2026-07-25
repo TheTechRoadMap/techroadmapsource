@@ -1,16 +1,31 @@
 import React, { useEffect, useState } from 'react';
+import {
+  FaCloud,
+  FaCode,
+  FaCubes,
+  FaDatabase,
+  FaInfoCircle,
+  FaShieldAlt,
+  FaTerminal,
+} from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 function getCategoryIcon(category) {
   const icons = {
-    coding: 'fa-code',
-    cloud: 'fa-cloud',
-    security: 'fa-shield-alt',
-    data: 'fa-database',
-    language: 'fa-terminal',
-    framework: 'fa-cubes'
+    coding: FaCode,
+    cloud: FaCloud,
+    security: FaShieldAlt,
+    data: FaDatabase,
+    language: FaTerminal,
+    framework: FaCubes,
   };
-  return <i className={`fas ${icons[category] || 'fa-info-circle'} mr-2`}></i>;
+
+  const Icon = icons[category] || FaInfoCircle;
+  return (
+    <span className="category-icon" aria-hidden="true">
+      <Icon />
+    </span>
+  );
 }
 
 function storageKey(itemType, id) {
