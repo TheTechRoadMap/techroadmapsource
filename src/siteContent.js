@@ -1,7 +1,7 @@
-import { languages } from './languages.js';
-import { roadmaps } from './roadmaps.js';
+import { languages } from './languages.js'; //Language Meta import
+import { roadmaps } from './roadmaps.js';   //Roadmap Meta import
 
-const roadmapPages = import.meta.glob('../../../roadmaps/*.html', {
+const roadmapPages = import.meta.glob('../../../roadmaps/*.html', { //Roadmap Meta import 
   eager: true,
   import: 'default',
   query: '?raw',
