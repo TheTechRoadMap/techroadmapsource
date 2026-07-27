@@ -26,8 +26,14 @@ export default function Layout() {
 
       <header className="site-nav-shell">
         <div className="site-nav">
-          <NavLink className="brand-mark" to="/">
-            TechRoadMap
+          <NavLink aria-label="TechRoadMap home" className="brand-mark" to="/">
+            <img
+              alt=""
+              className="brand-logo"
+              height="545"
+              src="/techroadmap-logo.png"
+              width="675"
+            />
           </NavLink>
 
           <nav className="nav-links" aria-label="Primary">

@@ -19,6 +19,10 @@ import { languages } from '../src/languages.js';
 import { roadmaps } from '../src/roadmaps.js';
 import { SAMPLE_TECH_NEWS } from '../src/techNews.js';
 import { technologyConnections } from '../src/technologyConnections.js';
+import {
+  getRoadmapLearningPlan,
+  stepProjectsByRoadmap,
+} from '../src/roadmapLearningPlans.js';
 
 test('certification catalog contains at least ten additive entries', () => {
   assert.ok(certifications.length >= 10);
@@ -103,5 +107,25 @@ test('technology connections point to real roadmap and technology records', () =
   Object.entries(technologyConnections).forEach(([roadmapId, connections]) => {
     assert.ok(roadmapIds.has(roadmapId), roadmapId);
     connections.forEach((connection) => assert.ok(technologyIds.has(connection.id), connection.id));
+  });
+});
+
+test('every roadmap has four phases, checkpoint projects, and portfolio-ready work', () => {
+  roadmaps.forEach((roadmap) => {
+    const plan = getRoadmapLearningPlan(roadmap);
+
+    assert.equal(plan.phases.length, 4, roadmap.id);
+    assert.equal(stepProjectsByRoadmap[roadmap.id].length, 4, roadmap.id);
+    plan.phases.forEach((phase) => {
+      assert.equal(phase.milestones.length, 3, `${roadmap.id} phase ${phase.number}`);
+      assert.ok(phase.project[0]);
+      assert.ok(phase.project[1]);
+    });
+    assert.ok(plan.portfolioProjects.length >= 3, roadmap.id);
+    plan.portfolioProjects.forEach((project) => {
+      assert.ok(project.title);
+      assert.ok(project.description);
+      assert.equal(project.deliverables.length, 3);
+    });
   });
 });

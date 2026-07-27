@@ -5,6 +5,7 @@ import { roadmapCategories } from './roadmaps.js';
 import { isSafeHttpsUrl } from './contentUtils.js';
 import { getDetailItem, languageContent, roadmapContent } from './siteContent.js';
 import { usePageMeta } from './pageMeta.js';
+import RoadmapLearningPlan from './RoadmapLearningPlan.jsx';
 import {
   getRoadmapConnections,
   getTechnologyConnections,
@@ -93,6 +94,8 @@ export default function DetailView({ type }) {
           </div>
         </section>
       ) : null}
+
+      {type === 'roadmap' ? <RoadmapLearningPlan roadmap={item} /> : null}
 
       {item.sections.map((section) => (
         <section className="roadmap-section" key={section.title}>

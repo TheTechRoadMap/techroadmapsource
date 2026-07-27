@@ -365,7 +365,7 @@ function buildCollection(kind, catalog, pagesBySlug) {
     }
 
     // Dynamically inject Projects
-    if (item.projects?.length) {
+    if (kind === 'language' && item.projects?.length) {
       dynamicSections.push({
         title: 'Beginner Projects',
         paragraphs: ['Practical experience is the best way to learn. Try building these projects to solidify your understanding.'],

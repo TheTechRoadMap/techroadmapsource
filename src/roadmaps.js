@@ -854,6 +854,8 @@ export const roadmaps = [
     // Projects
     projects: [
       { title: 'Home Lab Setup', description: 'Configure a personal home network with separate VLANs for IoT and personal devices.' },
+      { title: 'Small Office Network Installation Plan', description: 'Design a complete installation pack with equipment choices, cable schedule, Wi-Fi plan, testing checklist, and handover notes.' },
+      { title: 'Network Fault Casebook', description: 'Document several simulated connectivity incidents with symptoms, diagnostic evidence, root causes, fixes, and prevention steps.' },
     ],
     // Prerequisites
     prerequisites: [
