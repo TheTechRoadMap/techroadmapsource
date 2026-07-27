@@ -151,8 +151,149 @@ const phaseBlueprints = [
   },
 ];
 
+const roadmapPhaseTracks = {
+  'frontend-dev': [
+    ['Web Foundations', '2–3 weeks', 'Build a strong base in semantic HTML, modern CSS, JavaScript, Git, and browser tools.'],
+    ['Interactive Interfaces', '3–5 weeks', 'Create responsive, accessible interfaces with state, forms, APIs, and reusable components.'],
+    ['Framework Engineering', '4–6 weeks', 'Structure larger applications with routing, testing, performance work, and maintainable architecture.'],
+    ['Production Frontend', '3–4 weeks', 'Ship a polished interface with quality checks, deployment, documentation, and a clear case study.'],
+  ],
+  'backend-dev': [
+    ['Server Foundations', '2–4 weeks', 'Learn server-side programming, HTTP, Git workflows, and dependable error handling.'],
+    ['Data and API Design', '4–6 weeks', 'Model relational data and build validated, tested REST or GraphQL services.'],
+    ['Secure Service Architecture', '4–7 weeks', 'Add identity, caching, background work, messaging, and failure-aware design.'],
+    ['Production Backend', '3–5 weeks', 'Containerise, observe, secure, document, and deploy a production-style service.'],
+  ],
+  'fullstack-dev': [
+    ['Interface and Server Basics', '3–4 weeks', 'Build the frontend and backend foundations needed to deliver a complete feature.'],
+    ['End-to-End Data Flow', '4–6 weeks', 'Connect forms, APIs, authentication, databases, and useful client-side states.'],
+    ['Integrated Product Systems', '5–7 weeks', 'Add roles, real-time behaviour, testing, payments, or other production workflows.'],
+    ['Full-Stack Delivery', '3–5 weeks', 'Deploy a coherent product with CI, monitoring, demo data, and strong documentation.'],
+  ],
+  'mobile-development': [
+    ['Mobile Platform Foundations', '3–4 weeks', 'Learn platform conventions, navigation, layouts, components, and touch-first accessibility.'],
+    ['State and Device Integration', '4–6 weeks', 'Manage app state, local storage, APIs, permissions, and native device capabilities.'],
+    ['Reliable Mobile Experiences', '4–6 weeks', 'Handle offline use, performance, notifications, testing, and failure recovery.'],
+    ['Store-Ready Release', '3–5 weeks', 'Prepare a tested release with privacy notes, monitoring, store assets, and a case study.'],
+  ],
+  'game-dev': [
+    ['Gameplay Foundations', '3–5 weeks', 'Learn the engine, input, physics, scenes, scripting, and a repeatable gameplay loop.'],
+    ['Systems and Mechanics', '4–6 weeks', 'Build reusable gameplay systems for UI, scoring, audio, saving, and game state.'],
+    ['Polished Vertical Slice', '5–8 weeks', 'Combine art, level design, feedback, difficulty, and playtesting into one complete experience.'],
+    ['Optimised Release', '3–5 weeks', 'Profile, package, publish, and explain the technical and design decisions behind the game.'],
+  ],
+  blockchain: [
+    ['Ledger and Contract Foundations', '3–5 weeks', 'Understand transactions, wallets, cryptography, networks, and smart-contract basics.'],
+    ['dApp Integration', '4–6 weeks', 'Connect tested contracts to a usable interface and communicate transaction states clearly.'],
+    ['Contract Security', '4–7 weeks', 'Practise permissions, events, failure cases, testing, analysis, and threat modelling.'],
+    ['Auditable Testnet Release', '3–5 weeks', 'Publish verified testnet code with reproducible setup, security notes, and limitations.'],
+  ],
+  'cloud-engineer': [
+    ['Cloud Core Services', '3–4 weeks', 'Build confidence with compute, storage, networking, identity, and shared-responsibility concepts.'],
+    ['Automated Infrastructure', '4–6 weeks', 'Provision repeatable environments with infrastructure as code and controlled configuration.'],
+    ['Resilient Architecture', '5–7 weeks', 'Design for scaling, backups, monitoring, availability, security, and recovery.'],
+    ['Governed Cloud Operations', '3–5 weeks', 'Demonstrate cost control, policy checks, observability, and a tested recovery plan.'],
+  ],
+  devops: [
+    ['Delivery Foundations', '3–4 weeks', 'Learn Linux, scripting, Git, containers, and the flow from source code to a running service.'],
+    ['CI/CD Automation', '4–6 weeks', 'Automate checks, builds, artefacts, environments, releases, and rollback paths.'],
+    ['Orchestration and Observability', '5–7 weeks', 'Operate container workloads with configuration, secrets, metrics, logs, and alerts.'],
+    ['Reliability Engineering', '3–5 weeks', 'Test failure scenarios and publish a dependable service runbook and incident review.'],
+  ],
+  cybersecurity: [
+    ['Defence Foundations', '3–5 weeks', 'Learn operating-system, networking, identity, cryptography, and safe lab fundamentals.'],
+    ['Detection and Investigation', '4–6 weeks', 'Analyse logs and network evidence to identify, explain, and contain suspicious activity.'],
+    ['Security Assessment', '5–7 weeks', 'Assess intentionally vulnerable systems and write clear, reproducible, risk-ranked findings.'],
+    ['Incident Readiness', '3–5 weeks', 'Run a safe response simulation and communicate technical evidence to different audiences.'],
+  ],
+  'network-engineer': [
+    ['Network Foundations', '3–5 weeks', 'Master addressing, subnetting, switching, core protocols, and structured verification.'],
+    ['Routing and Segmentation', '4–6 weeks', 'Configure routed networks, VLANs, access controls, redundancy, and secure connectivity.'],
+    ['Automation and Resilience', '4–7 weeks', 'Audit configuration with code and test monitoring, failover, and recovery behaviour.'],
+    ['Enterprise Network Design', '3–5 weeks', 'Present a secure, observable multi-site design with capacity and migration decisions.'],
+  ],
+  'network-technician': [
+    ['Physical Network Foundations', '2–3 weeks', 'Learn cabling, devices, ports, labelling, safety, and accurate network documentation.'],
+    ['Connectivity and Wireless', '3–5 weeks', 'Configure small networks and verify addressing, access points, and coverage.'],
+    ['Structured Troubleshooting', '3–5 weeks', 'Diagnose simulated physical, addressing, DNS, wireless, and performance faults methodically.'],
+    ['Site Handover', '2–4 weeks', 'Produce an inventory, topology, maintenance plan, change log, and support-ready runbook.'],
+  ],
+  'it-support-specialist': [
+    ['Support Foundations', '2–4 weeks', 'Build safe troubleshooting habits across hardware, operating systems, applications, and users.'],
+    ['Identity and Endpoint Administration', '4–6 weeks', 'Practise account lifecycle, access, device configuration, SaaS, and endpoint security.'],
+    ['Automation and Service Operations', '4–6 weeks', 'Use scripts, knowledge articles, ticket workflows, metrics, and escalation effectively.'],
+    ['Support Career Evidence', '2–4 weeks', 'Publish process improvements and practise explaining incidents with empathy and clarity.'],
+  ],
+  'data-analyst': [
+    ['Data and SQL Foundations', '3–5 weeks', 'Learn spreadsheet analysis, SQL, data cleaning, statistics, and reliable definitions.'],
+    ['Analysis and Visualisation', '4–6 weeks', 'Explore datasets, validate findings, and build focused dashboards that answer real questions.'],
+    ['Stakeholder Insight', '4–6 weeks', 'Translate ambiguous requests into metrics, analysis, limitations, and practical recommendations.'],
+    ['Portfolio Data Story', '3–4 weeks', 'Publish a reproducible analysis and present the evidence as a concise decision-making story.'],
+  ],
+  'data-science': [
+    ['Statistical Foundations', '4–6 weeks', 'Build fluency in Python, probability, data preparation, exploration, and reproducibility.'],
+    ['Predictive Modelling', '5–7 weeks', 'Create baselines, engineer features, train models, and select appropriate evaluation metrics.'],
+    ['Experimentation and Evaluation', '5–8 weeks', 'Compare approaches with error analysis, bias checks, uncertainty, and business context.'],
+    ['Reproducible Data Product', '3–5 weeks', 'Package a model demo with documentation, limitations, evidence, and a clear narrative.'],
+  ],
+  'data-engineer': [
+    ['Data Platform Foundations', '3–5 weeks', 'Learn SQL, programming, schemas, storage, ingestion, and dependable data handling.'],
+    ['Transformation and Modelling', '4–6 weeks', 'Create useful analytical models with lineage, documentation, and automated quality tests.'],
+    ['Orchestration and Streaming', '5–8 weeks', 'Operate scheduled and event-driven pipelines with retries, alerts, and backfills.'],
+    ['Production Data Reliability', '3–5 weeks', 'Demonstrate SLAs, governance, observability, cost awareness, and tested recovery.'],
+  ],
+  'ml-engineer': [
+    ['Machine Learning Foundations', '4–6 weeks', 'Build reproducible training skills across data, features, baselines, metrics, and tracking.'],
+    ['Training Pipelines', '5–7 weeks', 'Automate experiments, validate inputs, manage artefacts, and compare candidate models.'],
+    ['Serving and Monitoring', '5–8 weeks', 'Deploy efficient inference and observe latency, failures, quality, and model drift.'],
+    ['MLOps Release', '3–5 weeks', 'Build an approval, deployment, rollback, and retraining workflow with a model card.'],
+  ],
+  'ai-engineer': [
+    ['LLM and Prompt Foundations', '3–5 weeks', 'Learn model behaviour, structured prompting, APIs, context limits, and evaluation basics.'],
+    ['Retrieval Systems', '4–7 weeks', 'Build grounded AI features with chunking, search, citations, and measurable answer quality.'],
+    ['Agents and Guardrails', '5–8 weeks', 'Create tool-using workflows with permissions, structured output, safety, and recovery.'],
+    ['Production AI', '3–5 weeks', 'Measure quality, latency, cost, security, and observability before a documented release.'],
+  ],
+  'ux-ui-designer': [
+    ['Design and Research Foundations', '3–5 weeks', 'Learn visual principles, accessibility, research methods, and clear problem framing.'],
+    ['Information Architecture', '4–6 weeks', 'Turn findings into user flows, content structure, wireframes, and testable assumptions.'],
+    ['Prototyping and Testing', '4–7 weeks', 'Create accessible interactive prototypes and improve them through usability evidence.'],
+    ['Case Study and Portfolio', '3–5 weeks', 'Present the problem, process, trade-offs, iterations, and outcomes as a concise story.'],
+  ],
+};
+
 function pick(values, index, fallback) {
   return values?.[index] ?? values?.[index % (values?.length || 1)] ?? fallback;
+}
+
+function getPhaseBlueprints(roadmap) {
+  const customTrack = roadmapPhaseTracks[roadmap.id];
+
+  if (!customTrack) {
+    return phaseBlueprints;
+  }
+
+  return customTrack.map(([title, duration, summary], index) => ({
+    ...phaseBlueprints[index],
+    title,
+    duration,
+    summary,
+  }));
+}
+
+function getEstimatedDuration(phases) {
+  const range = phases.reduce(
+    (total, phase) => {
+      const numbers = phase.duration.match(/\d+/g)?.map(Number) ?? [];
+      return {
+        minimum: total.minimum + (numbers[0] ?? 0),
+        maximum: total.maximum + (numbers[1] ?? numbers[0] ?? 0),
+      };
+    },
+    { minimum: 0, maximum: 0 },
+  );
+
+  return `${range.minimum}–${range.maximum} weeks`;
 }
 
 function buildMilestones(roadmap, phase, phaseIndex) {
@@ -179,7 +320,7 @@ export function getRoadmapLearningPlan(roadmap) {
   }
 
   const stepProjects = stepProjectsByRoadmap[roadmap.id] ?? [];
-  const phases = phaseBlueprints.map((phase, index) => ({
+  const phases = getPhaseBlueprints(roadmap).map((phase, index) => ({
     number: index + 1,
     title: phase.title,
     duration: phase.duration,
@@ -197,6 +338,8 @@ export function getRoadmapLearningPlan(roadmap) {
     portfolioDeliverablesByCategory.engineering;
 
   return {
+    planTitle: `${roadmap.title} learning roadmap`,
+    estimatedDuration: getEstimatedDuration(phases),
     phases,
     portfolioProjects: projectCatalog.map((project, index) => ({
       ...project,
@@ -206,4 +349,4 @@ export function getRoadmapLearningPlan(roadmap) {
   };
 }
 
-export { stepProjectsByRoadmap };
+export { roadmapPhaseTracks, stepProjectsByRoadmap };

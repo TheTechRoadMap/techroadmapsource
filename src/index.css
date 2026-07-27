@@ -1443,6 +1443,12 @@ select:focus {
   font-weight: 900;
 }
 
+.learning-plan__stats .learning-plan__duration {
+  font-size: 0.88rem;
+  letter-spacing: -0.02em;
+  white-space: nowrap;
+}
+
 .phase-timeline {
   position: relative;
   display: flex;

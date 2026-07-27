@@ -2,7 +2,12 @@ import React from 'react';
 import { getRoadmapLearningPlan } from './roadmapLearningPlans.js';
 
 export default function RoadmapLearningPlan({ roadmap }) {
-  const { phases, portfolioProjects } = getRoadmapLearningPlan(roadmap);
+  const {
+    estimatedDuration,
+    phases,
+    planTitle,
+    portfolioProjects,
+  } = getRoadmapLearningPlan(roadmap);
 
   if (!phases.length) {
     return null;
@@ -15,17 +20,17 @@ export default function RoadmapLearningPlan({ roadmap }) {
           <div>
             <span className="eyebrow">Learn in a practical order</span>
             <h2 className="section-title" id="learning-plan-title">
-              Four-phase learning plan
+              {planTitle}
             </h2>
             <p className="section-copy">
-              Move forward when you can complete the checkpoint—not only when you have
-              watched the lessons.
+              Follow a career-specific sequence and move forward when you can complete
+              each checkpoint—not only when you have watched the lessons.
             </p>
           </div>
           <dl className="learning-plan__stats" aria-label="Learning plan summary">
             <div>
-              <dt>Phases</dt>
-              <dd>{phases.length}</dd>
+              <dt>Estimated pace</dt>
+              <dd className="learning-plan__duration">{estimatedDuration}</dd>
             </div>
             <div>
               <dt>Checkpoints</dt>

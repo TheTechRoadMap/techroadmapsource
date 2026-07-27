@@ -21,6 +21,7 @@ import { SAMPLE_TECH_NEWS } from '../src/techNews.js';
 import { technologyConnections } from '../src/technologyConnections.js';
 import {
   getRoadmapLearningPlan,
+  roadmapPhaseTracks,
   stepProjectsByRoadmap,
 } from '../src/roadmapLearningPlans.js';
 
@@ -111,11 +112,17 @@ test('technology connections point to real roadmap and technology records', () =
 });
 
 test('every roadmap has four phases, checkpoint projects, and portfolio-ready work', () => {
+  const phaseTitleSets = new Set();
+
   roadmaps.forEach((roadmap) => {
     const plan = getRoadmapLearningPlan(roadmap);
 
     assert.equal(plan.phases.length, 4, roadmap.id);
+    assert.equal(plan.planTitle, `${roadmap.title} learning roadmap`);
+    assert.match(plan.estimatedDuration, /^\d+–\d+ weeks$/);
+    assert.equal(roadmapPhaseTracks[roadmap.id].length, 4, roadmap.id);
     assert.equal(stepProjectsByRoadmap[roadmap.id].length, 4, roadmap.id);
+    phaseTitleSets.add(plan.phases.map((phase) => phase.title).join('|'));
     plan.phases.forEach((phase) => {
       assert.equal(phase.milestones.length, 3, `${roadmap.id} phase ${phase.number}`);
       assert.ok(phase.project[0]);
@@ -128,4 +135,6 @@ test('every roadmap has four phases, checkpoint projects, and portfolio-ready wo
       assert.equal(project.deliverables.length, 3);
     });
   });
+
+  assert.equal(phaseTitleSets.size, roadmaps.length);
 });
