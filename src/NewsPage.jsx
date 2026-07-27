@@ -2,7 +2,8 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { filterNews, isSafeHttpsUrl, uniqueValues } from './contentUtils.js';
 import { usePageMeta } from './pageMeta.js';
 import TechNewsCard from './TechNewsCard.jsx';
-import { loadTechNews, newsCategories } from './techNews.js';
+import { newsCategories } from './techNews.js';
+import { getNewsFeedLabel, useTechNews } from './useTechNews.js';
 
 function NewsPageSkeleton() {
   return (
@@ -15,8 +16,12 @@ function NewsPageSkeleton() {
 }
 
 export default function NewsPage() {
-  const [items, setItems] = useState([]);
-  const [status, setStatus] = useState('loading');
+  const {
+    articles,
+    feedMode,
+    refresh,
+    status,
+  } = useTechNews();
   const [filters, setFilters] = useState({
     search: '',
     category: 'all',
@@ -29,24 +34,10 @@ export default function NewsPage() {
     'Browse curated technology news from original publishers across AI, software, cloud, security, data, and careers.',
   );
 
-  useEffect(() => {
-    let active = true;
-    loadTechNews()
-      .then((articles) => {
-        if (active) {
-          setItems(articles.filter((article) => isSafeHttpsUrl(article.articleUrl)));
-          setStatus('ready');
-        }
-      })
-      .catch(() => {
-        if (active) {
-          setStatus('error');
-        }
-      });
-    return () => {
-      active = false;
-    };
-  }, []);
+  const items = useMemo(
+    () => articles.filter((article) => isSafeHttpsUrl(article.articleUrl)),
+    [articles],
+  );
 
   const filteredItems = useMemo(() => filterNews(items, filters), [filters, items]);
   const sources = useMemo(() => uniqueValues(items, 'source'), [items]);
@@ -61,6 +52,18 @@ export default function NewsPage() {
         <span className="eyebrow">Curated external reading</span>
         <h1>Tech News</h1>
         <p>Explore developments shaping technology, then continue to the original publisher for the full story.</p>
+        <div className="news-feed-actions">
+          <span className={`news-feed-status news-feed-status--${feedMode}`}>
+            {getNewsFeedLabel(feedMode)}
+          </span>
+          <button
+            className="button-link button-link--secondary button-link--small"
+            onClick={() => refresh(true)}
+            type="button"
+          >
+            Refresh now
+          </button>
+        </div>
       </header>
 
       <section className="search-filter news-filters" aria-label="News filters">

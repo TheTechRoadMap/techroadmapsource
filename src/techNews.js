@@ -1,5 +1,17 @@
-// Sample news feed used until a server-side news source or editorial dashboard
-// is connected. Keep API keys on a backend and map future results to this shape.
+import { isSafeHttpsUrl } from './contentUtils.js';
+
+const HACKER_NEWS_API = 'https://hacker-news.firebaseio.com/v0';
+const NEWS_CACHE_KEY = 'tech-roadmap:live-news:v1';
+const NEWS_CACHE_VERSION = 1;
+const NEWS_CACHE_TTL_MS = 15 * 60 * 1000;
+const NEWS_REQUEST_TIMEOUT_MS = 8000;
+const LIVE_STORY_COUNT = 12;
+const STORY_CANDIDATE_COUNT = 30;
+
+export const NEWS_REFRESH_INTERVAL_MS = NEWS_CACHE_TTL_MS;
+
+// Curated fallback content keeps the page useful when the live service or the
+// visitor's network is unavailable.
 export const SAMPLE_TECH_NEWS = [
   {
     id: 'google-symptom-ai',
@@ -107,7 +119,237 @@ export const newsCategories = [
   'Technology Careers',
 ];
 
-export function loadTechNews() {
-  // Replace this resolved sample with a backend request when a live feed exists.
-  return Promise.resolve(SAMPLE_TECH_NEWS);
+const categoryImages = {
+  'Artificial Intelligence': 'https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=1200&q=80',
+  Cybersecurity: 'https://images.unsplash.com/photo-1563013544-824ae1b704d3?auto=format&fit=crop&w=1200&q=80',
+  'Software Development': 'https://images.unsplash.com/photo-1515879218367-8466d910aaa4?auto=format&fit=crop&w=1200&q=80',
+  'Cloud Computing': 'https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=1200&q=80',
+  'Data Science': 'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80',
+  'Mobile Development': 'https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?auto=format&fit=crop&w=1200&q=80',
+  Networking: 'https://images.unsplash.com/photo-1558494949-ef010cbdcc31?auto=format&fit=crop&w=1200&q=80',
+  'Technology Careers': 'https://images.unsplash.com/photo-1521737711867-e3b97375f902?auto=format&fit=crop&w=1200&q=80',
+};
+
+function cleanTitle(value) {
+  return String(value ?? '')
+    .replace(/<[^>]*>/g, '')
+    .replace(/&amp;/gi, '&')
+    .replace(/&quot;/gi, '"')
+    .replace(/&#0*39;|&apos;/gi, "'")
+    .replace(/&lt;/gi, '<')
+    .replace(/&gt;/gi, '>')
+    .replace(/&#(\d+);/g, (_, code) => String.fromCodePoint(Number(code)))
+    .replace(/\s+/g, ' ')
+    .trim()
+    .slice(0, 220);
+}
+
+export function categorizeTechStory(title, url = '') {
+  const text = `${title} ${url}`.toLowerCase();
+  const categoryRules = [
+    ['Artificial Intelligence', /\b(ai|llm|language model|machine learning|openai|anthropic|gemini|neural|inference)\b/],
+    ['Cybersecurity', /\b(security|cyber|vulnerability|malware|ransomware|breach|encryption|privacy|exploit)\b/],
+    ['Cloud Computing', /\b(cloud|aws|azure|gcp|kubernetes|docker|serverless|devops|terraform|infrastructure)\b/],
+    ['Data Science', /\b(data|database|sql|analytics|dataset|postgres|spark|warehouse)\b/],
+    ['Mobile Development', /\b(android|ios|mobile|iphone|swift|kotlin|flutter|react native)\b/],
+    ['Networking', /\b(network|internet|dns|tcp|routing|router|wifi|wi-fi|protocol)\b/],
+    ['Technology Careers', /\b(career|hiring|job|developer survey|engineering culture|workplace)\b/],
+  ];
+
+  return categoryRules.find(([, pattern]) => pattern.test(text))?.[0] ?? 'Software Development';
+}
+
+function getPublisherName(articleUrl) {
+  const hostname = new URL(articleUrl).hostname.replace(/^www\./, '');
+  const knownPublishers = {
+    'github.com': 'GitHub',
+    'microsoft.com': 'Microsoft',
+    'google.com': 'Google',
+    'openai.com': 'OpenAI',
+    'arstechnica.com': 'Ars Technica',
+    'techcrunch.com': 'TechCrunch',
+    'theverge.com': 'The Verge',
+  };
+
+  return knownPublishers[hostname] ?? hostname;
+}
+
+export function mapHackerNewsStory(story) {
+  const title = cleanTitle(story?.title);
+  const articleUrl = story?.url;
+  const publishedAt = new Date(Number(story?.time) * 1000);
+
+  if (
+    story?.type !== 'story' ||
+    story.deleted ||
+    story.dead ||
+    !Number.isInteger(story.id) ||
+    !title ||
+    !isSafeHttpsUrl(articleUrl) ||
+    Number.isNaN(publishedAt.getTime())
+  ) {
+    return null;
+  }
+
+  const category = categorizeTechStory(title, articleUrl);
+  const source = getPublisherName(articleUrl);
+  const score = Math.max(0, Number(story.score) || 0);
+  const comments = Math.max(0, Number(story.descendants) || 0);
+
+  return {
+    id: `hn-${story.id}`,
+    title,
+    summary: `Trending on Hacker News with ${score} points and ${comments} comments. Continue to ${source} for the original article.`,
+    imageUrl: categoryImages[category],
+    articleUrl,
+    source,
+    category,
+    publishedAt: publishedAt.toISOString(),
+    readingTime: `${score} HN points`,
+  };
+}
+
+function getBrowserStorage() {
+  try {
+    return typeof window !== 'undefined' ? window.localStorage : null;
+  } catch {
+    return null;
+  }
+}
+
+function validateCachedItems(items) {
+  return Array.isArray(items)
+    ? items.filter(
+        (item) =>
+          item &&
+          typeof item.id === 'string' &&
+          typeof item.title === 'string' &&
+          newsCategories.includes(item.category) &&
+          isSafeHttpsUrl(item.articleUrl),
+      )
+    : [];
+}
+
+function readNewsCache(storage) {
+  if (!storage) {
+    return null;
+  }
+
+  try {
+    const cached = JSON.parse(storage.getItem(NEWS_CACHE_KEY));
+    const items = validateCachedItems(cached?.items);
+    if (cached?.version !== NEWS_CACHE_VERSION || !Number.isFinite(cached?.savedAt) || !items.length) {
+      return null;
+    }
+    return { items, savedAt: cached.savedAt };
+  } catch {
+    return null;
+  }
+}
+
+function writeNewsCache(storage, items, savedAt) {
+  if (!storage) {
+    return;
+  }
+
+  try {
+    storage.setItem(
+      NEWS_CACHE_KEY,
+      JSON.stringify({ version: NEWS_CACHE_VERSION, savedAt, items }),
+    );
+  } catch {
+    // Storage can be disabled or full; the live feed still works without it.
+  }
+}
+
+async function requestJson(url, fetchImpl) {
+  const controller = typeof AbortController === 'undefined' ? null : new AbortController();
+  const timeout = controller
+    ? setTimeout(() => controller.abort(), NEWS_REQUEST_TIMEOUT_MS)
+    : null;
+
+  try {
+    const response = await fetchImpl(url, controller ? { signal: controller.signal } : undefined);
+    if (!response?.ok) {
+      throw new Error(`News request failed with status ${response?.status ?? 'unknown'}`);
+    }
+    return await response.json();
+  } finally {
+    if (timeout) {
+      clearTimeout(timeout);
+    }
+  }
+}
+
+async function fetchLiveStories(fetchImpl, storyLimit = LIVE_STORY_COUNT) {
+  if (typeof fetchImpl !== 'function') {
+    throw new Error('Fetch is unavailable');
+  }
+
+  const ids = await requestJson(`${HACKER_NEWS_API}/topstories.json`, fetchImpl);
+  if (!Array.isArray(ids)) {
+    throw new Error('The live news response was invalid');
+  }
+
+  const candidates = await Promise.allSettled(
+    ids.slice(0, STORY_CANDIDATE_COUNT).map((id) =>
+      requestJson(`${HACKER_NEWS_API}/item/${id}.json`, fetchImpl),
+    ),
+  );
+  const items = candidates
+    .filter((result) => result.status === 'fulfilled')
+    .map((result) => mapHackerNewsStory(result.value))
+    .filter(Boolean)
+    .slice(0, storyLimit);
+
+  if (!items.length) {
+    throw new Error('The live feed contained no valid stories');
+  }
+
+  return items;
+}
+
+export async function loadTechNews(options = {}) {
+  const {
+    fetchImpl = globalThis.fetch,
+    forceRefresh = false,
+    now = Date.now(),
+    storage = getBrowserStorage(),
+    storyLimit = LIVE_STORY_COUNT,
+  } = options;
+  const cached = readNewsCache(storage);
+
+  if (!forceRefresh && cached && now - cached.savedAt < NEWS_CACHE_TTL_MS) {
+    return {
+      items: cached.items,
+      mode: 'cache',
+      updatedAt: new Date(cached.savedAt).toISOString(),
+    };
+  }
+
+  try {
+    const items = await fetchLiveStories(fetchImpl, storyLimit);
+    writeNewsCache(storage, items, now);
+    return {
+      items,
+      mode: 'live',
+      updatedAt: new Date(now).toISOString(),
+    };
+  } catch {
+    if (cached?.items.length) {
+      return {
+        items: cached.items,
+        mode: 'cache',
+        stale: true,
+        updatedAt: new Date(cached.savedAt).toISOString(),
+      };
+    }
+
+    return {
+      items: SAMPLE_TECH_NEWS,
+      mode: 'fallback',
+      stale: true,
+      updatedAt: null,
+    };
+  }
 }

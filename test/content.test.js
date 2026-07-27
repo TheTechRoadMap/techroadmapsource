@@ -18,6 +18,11 @@ import {
 import { languages } from '../src/languages.js';
 import { roadmaps } from '../src/roadmaps.js';
 import { SAMPLE_TECH_NEWS } from '../src/techNews.js';
+import {
+  categorizeTechStory,
+  loadTechNews,
+  mapHackerNewsStory,
+} from '../src/techNews.js';
 import { technologyConnections } from '../src/technologyConnections.js';
 import {
   getRoadmapLearningPlan,
@@ -90,6 +95,59 @@ test('news search, category filtering, sorting, and URLs are valid', () => {
   assert.equal(filterNews(SAMPLE_TECH_NEWS, { search: 'prompt tuning' })[0].id, 'vscode-prompt-tuning');
   const oldestFirst = filterNews(SAMPLE_TECH_NEWS, { sort: 'oldest' });
   assert.ok(new Date(oldestFirst[0].publishedAt) <= new Date(oldestFirst.at(-1).publishedAt));
+});
+
+test('live Hacker News stories are safely normalized and categorized', () => {
+  const article = mapHackerNewsStory({
+    id: 123,
+    type: 'story',
+    by: 'tester',
+    time: 1785100000,
+    title: 'A new &amp; secure Kubernetes platform',
+    url: 'https://example.com/cloud-platform',
+    score: 42,
+    descendants: 7,
+  });
+
+  assert.equal(article.title, 'A new & secure Kubernetes platform');
+  assert.equal(article.category, 'Cloud Computing');
+  assert.equal(article.source, 'example.com');
+  assert.equal(isSafeHttpsUrl(article.articleUrl), true);
+  assert.equal(mapHackerNewsStory({ id: 1, type: 'story', title: 'Unsafe', url: 'javascript:alert(1)', time: 1 }), null);
+  assert.equal(categorizeTechStory('Critical ransomware vulnerability'), 'Cybersecurity');
+});
+
+test('live news loader uses the API and falls back safely when it is unavailable', async () => {
+  const stories = new Map([
+    [11, { id: 11, type: 'story', time: 1785100000, title: 'Modern JavaScript runtimes', url: 'https://example.com/js', score: 20 }],
+    [12, { id: 12, type: 'story', time: 1785100001, title: 'New database engine', url: 'https://example.org/data', score: 15 }],
+  ]);
+  const fetchImpl = async (url) => ({
+    ok: true,
+    json: async () =>
+      url.endsWith('/topstories.json')
+        ? [11, 12]
+        : stories.get(Number(url.match(/\/item\/(\d+)\.json$/)?.[1])),
+  });
+  const live = await loadTechNews({
+    fetchImpl,
+    forceRefresh: true,
+    now: 1785101000000,
+    storage: null,
+    storyLimit: 2,
+  });
+  assert.equal(live.mode, 'live');
+  assert.equal(live.items.length, 2);
+
+  const fallback = await loadTechNews({
+    fetchImpl: async () => {
+      throw new Error('offline');
+    },
+    forceRefresh: true,
+    storage: null,
+  });
+  assert.equal(fallback.mode, 'fallback');
+  assert.equal(fallback.items, SAMPLE_TECH_NEWS);
 });
 
 test('quiz returns three ranked roadmap recommendations', () => {

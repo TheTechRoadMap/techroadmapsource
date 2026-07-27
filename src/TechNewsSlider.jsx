@@ -2,7 +2,7 @@ import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { isSafeHttpsUrl } from './contentUtils.js';
 import TechNewsCard from './TechNewsCard.jsx';
-import { loadTechNews } from './techNews.js';
+import { getNewsFeedLabel, useTechNews } from './useTechNews.js';
 
 function NewsSkeleton() {
   return (
@@ -16,32 +16,12 @@ function NewsSkeleton() {
 }
 
 export default function TechNewsSlider() {
-  const [articles, setArticles] = useState([]);
-  const [status, setStatus] = useState('loading');
+  const { articles: loadedArticles, feedMode, status } = useTechNews();
   const [activeIndex, setActiveIndex] = useState(0);
   const [visibleCount, setVisibleCount] = useState(3);
   const [paused, setPaused] = useState(false);
   const viewportRef = useRef(null);
-
-  useEffect(() => {
-    let active = true;
-    loadTechNews()
-      .then((items) => {
-        if (active) {
-          setArticles(items.filter((item) => isSafeHttpsUrl(item.articleUrl)));
-          setStatus('ready');
-        }
-      })
-      .catch(() => {
-        if (active) {
-          setStatus('error');
-        }
-      });
-
-    return () => {
-      active = false;
-    };
-  }, []);
+  const articles = loadedArticles.filter((item) => isSafeHttpsUrl(item.articleUrl));
 
   useEffect(() => {
     function updateVisibleCount() {
@@ -129,6 +109,9 @@ export default function TechNewsSlider() {
           <span className="eyebrow">Industry watch</span>
           <h2>Latest Tech News</h2>
           <p>Stay informed about developments shaping the technology industry.</p>
+          <span className={`news-feed-status news-feed-status--${feedMode}`}>
+            {getNewsFeedLabel(feedMode)}
+          </span>
         </div>
         <div className="carousel-controls">
           <button aria-label="Previous news articles" disabled={maxIndex === 0} onClick={() => goTo(activeIndex - 1)} type="button">
