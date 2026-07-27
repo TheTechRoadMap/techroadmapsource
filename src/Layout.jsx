@@ -3,8 +3,12 @@ import { NavLink, Outlet } from 'react-router-dom';
 
 const navigation = [
   { to: '/', label: 'Home', end: true },
-  { to: '/about', label: 'About' },
+  { to: '/find-my-path', label: 'Find My Path' },
   { to: '/languages', label: 'Languages' },
+  { to: '/certifications', label: 'Certifications' },
+  { to: '/news', label: 'News' },
+  { to: '/jobs', label: 'Jobs' },
+  { to: '/about', label: 'About' },
 ];
 
 function navClassName({ isActive }) {
@@ -23,7 +27,7 @@ export default function Layout() {
       <header className="site-nav-shell">
         <div className="site-nav">
           <NavLink className="brand-mark" to="/">
-            TechRoadMaps
+            TechRoadMap
           </NavLink>
 
           <nav className="nav-links" aria-label="Primary">
@@ -46,7 +50,7 @@ export default function Layout() {
       </main>
 
       <footer className="footer">
-        <p>&copy; {year} Tech Roadmaps. All rights reserved.</p>
+        <p>&copy; {year} TechRoadMap. All rights reserved.</p>
       </footer>
     </div>
   );

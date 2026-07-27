@@ -1,57 +1,43 @@
 import React from 'react';
-import {
-  FaBullhorn,
-  FaCode,
-  FaEnvelope,
-  FaGithub,
-  FaInstagram,
-  FaPhoneAlt,
-  FaRocket,
-  FaTiktok,
-  FaUser,
-  FaVial,
-  FaLinkedin,
-  FaArrowRight,
-} from 'react-icons/fa';
 import { aboutContent } from './siteContent.js';
 import { usePageMeta } from './pageMeta.js';
 
 const teamIconMap = {
-  FaBullhorn,
-  FaCode,
-  FaRocket,
-  FaUser,
-  FaVial,
+  FaBullhorn: 'MKT',
+  FaCode: '</>',
+  FaRocket: 'DEV',
+  FaUser: 'PM',
+  FaVial: 'QA',
 };
 
 function renderSocialIcon(label) {
   const normalized = label.toLowerCase();
 
   if (normalized.includes('tiktok')) {
-    return <FaTiktok className="social-icon" aria-hidden="true" />;
+    return <span className="social-icon" aria-hidden="true">TT</span>;
   }
 
   if (normalized.includes('instagram')) {
-    return <FaInstagram className="social-icon" aria-hidden="true" />;
+    return <span className="social-icon" aria-hidden="true">IG</span>;
   }
 
   if (normalized.includes('linkedin')) {
-    return <FaLinkedin className="social-icon" aria-hidden="true" />;
+    return <span className="social-icon" aria-hidden="true">IN</span>;
   }
 
   if (normalized.includes('github')) {
-    return <FaGithub className="social-icon" aria-hidden="true" />;
+    return <span className="social-icon" aria-hidden="true">GH</span>;
   }
 
   if (normalized.includes('email')) {
-    return <FaEnvelope className="social-icon" aria-hidden="true" />;
+    return <span className="social-icon" aria-hidden="true">@</span>;
   }
 
   if (normalized.includes('call') || normalized.includes('phone')) {
-    return <FaPhoneAlt className="social-icon" aria-hidden="true" />;
+    return <span className="social-icon" aria-hidden="true">TEL</span>;
   }
 
-  return <FaArrowRight className="social-icon" aria-hidden="true" />;
+  return <span className="social-icon" aria-hidden="true">→</span>;
 }
 
 export default function About() {
@@ -79,7 +65,7 @@ export default function About() {
             <article className="team-member" key={member.name}>
               <div className={`member-badge member-badge--${member.accent}`}>
                 <span className="member-avatar" aria-hidden="true">
-                  {React.createElement(teamIconMap[member.avatar] || FaUser)}
+                  {teamIconMap[member.avatar] || 'TEAM'}
                 </span>
               </div>
               <div className="member-meta">
@@ -87,19 +73,21 @@ export default function About() {
                 <span className={`role-tag role-tag--${member.accent}`}>{member.role}</span>
               </div>
               <p>{member.description}</p>
-              <ul className="contact-list">
-                <li>
-                  <span className="contact-label">Email</span>
-                  <a href={`mailto:${member.contactEmail}`}>{member.contactEmail}</a>
-                </li>
-              </ul>
+              {member.contactEmail ? (
+                <ul className="contact-list">
+                  <li>
+                    <span className="contact-label">Email</span>
+                    <a href={`mailto:${member.contactEmail}`}>{member.contactEmail}</a>
+                  </li>
+                </ul>
+              ) : null}
               <div className="team-social">
                 {member.links.map((link) => (
                   <a
                     aria-label={link.label}
                     href={link.href}
                     key={link.href}
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     target={link.href.startsWith('http') ? '_blank' : undefined}
                   >
                     {renderSocialIcon(link.label)}
@@ -130,7 +118,7 @@ export default function About() {
               aria-label={link.label}
               href={link.href}
               key={link.href}
-              rel="noreferrer"
+              rel="noopener noreferrer"
               target={link.href.startsWith('http') ? '_blank' : undefined}
             >
               {renderSocialIcon(link.label)}
