@@ -616,7 +616,11 @@ select {
   font-weight: 700;
 }
 
-.certification-filters input[type='text'],
+.certification-filters input[type='text'] {
+  font-size: 14px;
+  font-weight: 400;
+}
+
 .certification-filters select {
   font-size: 14px;
   font-weight: 700;
