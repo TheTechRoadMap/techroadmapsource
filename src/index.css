@@ -603,12 +603,22 @@ select {
   font-weight: 700;
 }
 
+.news-filters,
+.news-filters label,
+.news-filters input,
+.news-filters select,
 .certification-filters,
 .certification-filters label,
 .certification-filters input,
 .certification-filters select,
 .certification-filters ~ .results-summary {
   font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.news-filters input[type='text'],
+.news-filters select {
+  font-size: 16px;
+  font-weight: 400;
 }
 
 .certification-filters label {
