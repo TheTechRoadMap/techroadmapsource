@@ -617,13 +617,13 @@ select {
 }
 
 .certification-filters input[type='text'] {
-  font-size: 14px;
+  font-size: 16px;
   font-weight: 400;
 }
 
 .certification-filters select {
-  font-size: 14px;
-  font-weight: 700;
+  font-size: 16px;
+  font-weight: 400;
 }
 
 .certification-filters ~ .results-summary {
@@ -713,7 +713,7 @@ select {
   margin-top: auto;
   color: var(--brand-soft);
   font-size: 0.9rem;
-  font-weight: 800;
+  font-weight: 400;
   text-decoration: none;
   transition: color 180ms ease, gap 180ms ease;
 }

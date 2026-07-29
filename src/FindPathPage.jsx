@@ -125,8 +125,8 @@ export default function FindPathPage() {
                       ))}
                     </div>
                   </div>
-                  <Link className="button-link" to={`/roadmaps/${roadmap.id}`}>
-                    Explore this roadmap
+                  <Link className="text-link" to={`/roadmaps/${roadmap.id}`}>
+                    View roadmap
                   </Link>
                 </article>
               );
