@@ -51,6 +51,7 @@ function PageHeader({ title, subtitle }) {
 }
 
 export default function CatalogPage({
+  afterContent,
   children,
   title,
   subtitle,
@@ -209,6 +210,8 @@ export default function CatalogPage({
           </div>
         </section>
       ) : null}
+
+      {afterContent}
     </>
   );
 }

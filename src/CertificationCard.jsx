@@ -1,8 +1,5 @@
-import React, { useMemo } from 'react';
-import { Link } from 'react-router-dom';
-import CertificationVideoCard from './CertificationVideoCard.jsx';
-import { certificationCategories } from './certifications.js';
-import { isSafeHttpsUrl, isSafeYouTubeUrl } from './contentUtils.js';
+import React from 'react';
+import { isSafeHttpsUrl } from './contentUtils.js';
 
 function providerInitials(provider) {
   return provider
@@ -13,20 +10,22 @@ function providerInitials(provider) {
     .toUpperCase();
 }
 
-export default function CertificationCard({ certification, roadmaps, videos }) {
-  const validVideos = useMemo(
-    () => videos.filter((video) => video.certificationId === certification.id && isSafeYouTubeUrl(video.youtubeUrl)),
-    [certification.id, videos],
-  );
-  const careerPaths = certification.recommendedCareerPaths
-    .map((id) => roadmaps.find((roadmap) => roadmap.id === id))
-    .filter(Boolean);
+function shortDescription(description) {
+  const text = String(description ?? '').trim();
+  const firstSentence = text.match(/^.*?[.!?](?:\s|$)/)?.[0]?.trim() ?? text;
+
+  return firstSentence.length > 125
+    ? `${firstSentence.slice(0, 122).trimEnd()}…`
+    : firstSentence;
+}
+
+export default function CertificationCard({ certification }) {
   const hasOfficialUrl = isSafeHttpsUrl(certification.officialUrl);
 
   return (
     <article className="certification-card glass-card">
       <div className="certification-card__header">
-        <div className="provider-logo" aria-label={`${certification.provider} logo placeholder`} role="img">
+        <div className="provider-logo" aria-hidden="true">
           {providerInitials(certification.provider)}
         </div>
         <div>
@@ -35,54 +34,21 @@ export default function CertificationCard({ certification, roadmaps, videos }) {
         </div>
       </div>
 
-      <p className="certification-card__description">{certification.description}</p>
-
-      <div className="metadata-row" aria-label="Certification details">
-        <span>{certificationCategories[certification.category] ?? certification.category}</span>
-        <span>{certification.difficulty}</span>
-        <span>{certification.duration}</span>
-        <span>{certification.costType}</span>
-      </div>
-
-      <div>
-        <h3 className="mini-heading">Skills gained</h3>
-        <ul className="chip-list" aria-label={`Skills gained in ${certification.name}`}>
-          {certification.skills.map((skill) => (
-            <li key={skill}>{skill}</li>
-          ))}
-        </ul>
-      </div>
-
-      <div>
-        <h3 className="mini-heading">Recommended career paths</h3>
-        <div className="connection-links">
-          {careerPaths.map((roadmap) => (
-            <Link key={roadmap.id} to={`/roadmaps/${roadmap.id}`}>
-              {roadmap.title}
-            </Link>
-          ))}
-        </div>
-      </div>
-
-      <details className="video-disclosure">
-        <summary>Recommended videos ({validVideos.length})</summary>
-        {validVideos.length ? (
-          <div className="video-grid">
-            {validVideos.map((video) => (
-              <CertificationVideoCard key={video.id} video={video} />
-            ))}
-          </div>
-        ) : (
-          <p className="inline-state">No recommended videos are available for this certification yet.</p>
-        )}
-      </details>
+      <p className="certification-card__description">
+        {shortDescription(certification.description)}
+      </p>
 
       {hasOfficialUrl ? (
-        <a className="button-link" href={certification.officialUrl} rel="noopener noreferrer" target="_blank">
-          View certification
+        <a
+          className="certification-card__link"
+          href={certification.officialUrl}
+          rel="noopener noreferrer"
+          target="_blank"
+        >
+          View certification details <span aria-hidden="true">→</span>
         </a>
       ) : (
-        <span className="button-link is-disabled" aria-disabled="true">
+        <span className="certification-card__link is-disabled" aria-disabled="true">
           Certification link unavailable
         </span>
       )}

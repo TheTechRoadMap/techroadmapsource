@@ -2,11 +2,9 @@ import React, { useEffect, useMemo, useState } from 'react';
 import CertificationCard from './CertificationCard.jsx';
 import {
   certificationCategories,
-  certificationVideos,
   loadCertificationCatalog,
 } from './certifications.js';
 import { filterCertifications, uniqueValues } from './contentUtils.js';
-import { roadmapContent } from './siteContent.js';
 import { usePageMeta } from './pageMeta.js';
 
 const initialFilters = {
@@ -23,7 +21,6 @@ function CertificationSkeleton() {
       <div className="skeleton skeleton--circle" />
       <div className="skeleton skeleton--title" />
       <div className="skeleton skeleton--line" />
-      <div className="skeleton skeleton--line" />
       <div className="skeleton skeleton--button" />
     </div>
   );
@@ -36,7 +33,7 @@ export default function CertificationsPage() {
 
   usePageMeta(
     'IT Certifications - TechRoadMap',
-    'Find additional recognised IT certifications, related career paths, and recommended preparation videos.',
+    'Browse recognised IT certifications and continue to each official provider for complete details.',
   );
 
   useEffect(() => {
@@ -71,7 +68,7 @@ export default function CertificationsPage() {
       <header className="header">
         <span className="eyebrow">Credential explorer</span>
         <h1>IT Certifications</h1>
-        <p>Build job-ready skills with recognised certifications that complement the credentials already inside each roadmap.</p>
+        <p>Compare the essentials, then visit the official provider when a certification interests you.</p>
       </header>
 
       <section className="search-filter certification-filters" aria-label="Certification filters">
@@ -154,8 +151,6 @@ export default function CertificationsPage() {
                 <CertificationCard
                   certification={certification}
                   key={certification.id}
-                  roadmaps={roadmapContent}
-                  videos={certificationVideos}
                 />
               ))}
             </section>

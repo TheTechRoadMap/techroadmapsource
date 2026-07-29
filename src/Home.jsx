@@ -14,6 +14,7 @@ export default function Home() {
 
   return (
     <CatalogPage
+      afterContent={<TechNewsSlider />}
       categories={roadmapCategories}
       guideText="Use search or category filters to narrow the list. Mark a roadmap complete as you progress, then open the detail page for learning paths and resources."
       infoText="Tech roadmaps help you organize what to learn next, see how skills connect, and focus on the paths employers actually hire for."
@@ -52,7 +53,6 @@ export default function Home() {
           Find my path
         </Link>
       </section>
-      <TechNewsSlider />
     </CatalogPage>
   );
 }

@@ -10,7 +10,6 @@ import CertificationsPage from './CertificationsPage.jsx';
 import DetailView from './DetailView.jsx';
 import FindPathPage from './FindPathPage.jsx';
 import Home from './Home.jsx';
-import Jobs from './Jobs.jsx';
 import LanguagesPage from './LanguagesPage.jsx';
 import Layout from './Layout.jsx';
 import NewsPage from './NewsPage.jsx';
@@ -38,7 +37,6 @@ export default function App() {
           <Route element={<LanguagesPage />} path="languages" />
           <Route element={<CertificationsPage />} path="certifications" />
           <Route element={<NewsPage />} path="news" />
-          <Route element={<Jobs />} path="jobs" />
           <Route element={<DetailView type="roadmap" />} path="roadmaps/:id" />
           <Route element={<DetailView type="language" />} path="languages/:id" />
           <Route element={<NotFound />} path="*" />

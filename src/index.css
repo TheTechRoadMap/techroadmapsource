@@ -104,31 +104,21 @@ select {
   flex: 0 0 auto;
   align-items: center;
   justify-content: center;
-  padding: 0.3rem 0.45rem;
-  border: 1px solid rgba(255, 255, 255, 0.28);
-  border-radius: 0.8rem;
-  background: rgba(255, 255, 255, 0.78);
-  -webkit-backdrop-filter: blur(12px);
-  backdrop-filter: blur(12px);
+  padding: 0.4rem 0.15rem;
+  color: var(--text-primary);
+  font-size: 1rem;
+  font-weight: 850;
+  letter-spacing: 0.025em;
   text-decoration: none;
-  box-shadow: 0 8px 24px rgba(2, 6, 23, 0.22);
-  transition: transform 180ms ease, background 180ms ease, border-color 180ms ease;
+  transition: color 180ms ease, transform 180ms ease;
 }
 
 .brand-mark:hover,
 .brand-mark:focus-visible {
-  border-color: rgba(147, 197, 253, 0.72);
-  background: rgba(255, 255, 255, 0.9);
+  color: var(--brand-soft);
   outline: 3px solid rgba(96, 165, 250, 0.24);
   outline-offset: 3px;
   transform: translateY(-1px);
-}
-
-.brand-logo {
-  display: block;
-  width: 3.8rem;
-  height: 3.05rem;
-  object-fit: contain;
 }
 
 .nav-links {
@@ -634,7 +624,7 @@ select {
 .certification-card {
   display: flex;
   flex-direction: column;
-  gap: 1.1rem;
+  gap: 0.9rem;
   min-width: 0;
   padding: 1.25rem;
 }
@@ -678,7 +668,40 @@ select {
 }
 
 .certification-card__description {
+  display: -webkit-box;
+  min-height: 2.8rem;
+  overflow: hidden;
   color: var(--text-secondary);
+  font-size: 0.9rem;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
+}
+
+.certification-card__link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  width: fit-content;
+  margin-top: auto;
+  color: var(--brand-soft);
+  font-size: 0.9rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: color 180ms ease, gap 180ms ease;
+}
+
+.certification-card__link:hover,
+.certification-card__link:focus-visible {
+  gap: 0.6rem;
+  color: #dbeafe;
+  outline: none;
+  text-decoration: underline;
+  text-underline-offset: 0.2rem;
+}
+
+.certification-card__link.is-disabled {
+  color: var(--text-muted);
+  cursor: not-allowed;
 }
 
 .metadata-row {

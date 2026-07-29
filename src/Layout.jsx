@@ -7,7 +7,6 @@ const navigation = [
   { to: '/languages', label: 'Languages' },
   { to: '/certifications', label: 'Certifications' },
   { to: '/news', label: 'News' },
-  { to: '/jobs', label: 'Jobs' },
   { to: '/about', label: 'About' },
 ];
 
@@ -26,14 +25,8 @@ export default function Layout() {
 
       <header className="site-nav-shell">
         <div className="site-nav">
-          <NavLink aria-label="TechRoadMap home" className="brand-mark" to="/">
-            <img
-              alt=""
-              className="brand-logo"
-              height="545"
-              src="/techroadmap-logo.png"
-              width="675"
-            />
+          <NavLink className="brand-mark" to="/">
+            The TechRoadMap
           </NavLink>
 
           <nav className="nav-links" aria-label="Primary">
