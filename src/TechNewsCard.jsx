@@ -39,7 +39,7 @@ export default function TechNewsCard({ article }) {
             <span>{formatArticleDate(article.publishedAt)}</span>
             {article.readingTime ? <span>{article.readingTime}</span> : null}
           </div>
-          <span className="button-link button-link--small">Read article</span>
+          <span className="text-link">Read article</span>
         </div>
       </a>
     </article>
