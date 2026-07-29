@@ -603,6 +603,30 @@ select {
   font-weight: 700;
 }
 
+.certification-filters,
+.certification-filters label,
+.certification-filters input,
+.certification-filters select,
+.certification-filters ~ .results-summary {
+  font-family: 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.certification-filters label {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+.certification-filters input[type='text'],
+.certification-filters select {
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.certification-filters ~ .results-summary {
+  font-size: 16px;
+  font-weight: 400;
+}
+
 .results-summary {
   color: var(--text-secondary);
   text-align: right;
