@@ -1,7 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import CertificationCard from './CertificationCard.jsx';
+import CertificationFolder from './CertificationFolder.jsx';
 import {
   certificationCategories,
+  certificationProviders,
   loadCertificationCatalog,
 } from './certifications.js';
 import { filterCertifications, uniqueValues } from './contentUtils.js';
@@ -17,7 +18,7 @@ const initialFilters = {
 
 function CertificationSkeleton() {
   return (
-    <div className="certification-card glass-card skeleton-card" aria-hidden="true">
+    <div className="certification-folder glass-card skeleton-card" aria-hidden="true">
       <div className="skeleton skeleton--circle" />
       <div className="skeleton skeleton--title" />
       <div className="skeleton skeleton--line" />
@@ -58,6 +59,25 @@ export default function CertificationsPage() {
 
   const filteredItems = useMemo(() => filterCertifications(items, filters), [items, filters]);
   const providers = useMemo(() => uniqueValues(items, 'provider'), [items]);
+  const costTypes = useMemo(() => uniqueValues(items, 'costType'), [items]);
+  const groupedProviders = useMemo(() => {
+    const providerOrder = Object.keys(certificationProviders);
+    const groups = new Map();
+
+    filteredItems.forEach((certification) => {
+      const group = groups.get(certification.provider) ?? [];
+      group.push(certification);
+      groups.set(certification.provider, group);
+    });
+
+    return [...groups.entries()].sort(([left], [right]) => {
+      const leftIndex = providerOrder.indexOf(left);
+      const rightIndex = providerOrder.indexOf(right);
+      return (leftIndex === -1 ? Number.MAX_SAFE_INTEGER : leftIndex)
+        - (rightIndex === -1 ? Number.MAX_SAFE_INTEGER : rightIndex)
+        || left.localeCompare(right);
+    });
+  }, [filteredItems]);
 
   function updateFilter(key, value) {
     setFilters((current) => ({ ...current, [key]: value }));
@@ -67,8 +87,8 @@ export default function CertificationsPage() {
     <>
       <header className="header">
         <span className="eyebrow">Credential explorer</span>
-        <h1>IT Certifications</h1>
-        <p>Compare the essentials, then visit the official provider when a certification interests you.</p>
+        <h1>Certifications &amp; Programmes</h1>
+        <p>Open an organisation folder, choose an opportunity, then continue to its official website.</p>
       </header>
 
       <section className="search-filter certification-filters" aria-label="Certification filters">
@@ -76,7 +96,7 @@ export default function CertificationsPage() {
           <span>Search</span>
           <input
             onChange={(event) => updateFilter('search', event.target.value)}
-            placeholder="Search certifications and skills..."
+            placeholder="Search organisations, credentials, and skills..."
             type="text"
             value={filters.search}
           />
@@ -116,7 +136,7 @@ export default function CertificationsPage() {
           <span>Cost</span>
           <select onChange={(event) => updateFilter('costType', event.target.value)} value={filters.costType}>
             <option value="all">All cost types</option>
-            {['Free', 'Paid', 'Financial Aid Available'].map((costType) => (
+            {costTypes.map((costType) => (
               <option key={costType} value={costType}>
                 {costType}
               </option>
@@ -143,20 +163,24 @@ export default function CertificationsPage() {
       {status === 'ready' ? (
         <>
           <div className="results-summary" aria-live="polite">
-            Showing {filteredItems.length} of {items.length} additional certifications
+            {groupedProviders.length} {groupedProviders.length === 1 ? 'organisation' : 'organisations'}
+            {' · '}
+            {filteredItems.length} of {items.length} opportunities
           </div>
           {filteredItems.length ? (
-            <section className="certification-grid" aria-label="Certification catalog">
-              {filteredItems.map((certification) => (
-                <CertificationCard
-                  certification={certification}
-                  key={certification.id}
+            <section className="certification-grid" aria-label="Certification organisations">
+              {groupedProviders.map(([provider, providerCertifications]) => (
+                <CertificationFolder
+                  certifications={providerCertifications}
+                  key={provider}
+                  provider={provider}
+                  providerDetails={certificationProviders[provider]}
                 />
               ))}
             </section>
           ) : (
             <section className="roadmap-section empty-state">
-              <h2 className="section-title">No certifications found</h2>
+              <h2 className="section-title">No opportunities found</h2>
               <p>Try a different search term or clear one of the filters.</p>
               <button className="button-link button-reset" onClick={() => setFilters(initialFilters)} type="button">
                 Clear all filters

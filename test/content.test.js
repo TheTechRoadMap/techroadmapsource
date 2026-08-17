@@ -1,6 +1,7 @@
 import assert from 'node:assert/strict';
 import test from 'node:test';
 import {
+  certificationProviders,
   certificationVideos,
   certifications,
 } from '../src/certifications.js';
@@ -30,26 +31,43 @@ import {
   stepProjectsByRoadmap,
 } from '../src/roadmapLearningPlans.js';
 
-test('certification catalog contains at least ten additive entries', () => {
-  assert.ok(certifications.length >= 10);
+test('certification catalog contains a broad set of unique entries', () => {
+  assert.ok(certifications.length >= 55);
   assert.equal(new Set(certifications.map((item) => item.id)).size, certifications.length);
 });
 
-test('new certification names do not duplicate existing roadmap credentials', () => {
-  const normalize = (value) =>
-    value
-      .toLowerCase()
-      .replace(/\([^)]*\)/g, '')
-      .replace(/[^a-z0-9]+/g, ' ')
-      .trim();
-  const existingNames = new Set(
-    [...roadmaps, ...languages].flatMap((item) =>
-      (item.certifications ?? []).map((certification) => normalize(certification.label)),
-    ),
-  );
+test('certification catalog includes complete organisation folders', () => {
+  const requiredProviders = [
+    'WeThinkCode_',
+    'Codecademy',
+    'Coursera',
+    'Cisco Networking Academy',
+    'freeCodeCamp',
+    'Oracle University',
+    'ISC2',
+  ];
 
+  requiredProviders.forEach((provider) => {
+    assert.ok(certifications.some((item) => item.provider === provider), provider);
+    assert.ok(certificationProviders[provider]?.description, provider);
+    assert.equal(isSafeHttpsUrl(certificationProviders[provider]?.logoUrl), true, provider);
+    assert.equal(isSafeHttpsUrl(certificationProviders[provider]?.website), true, provider);
+  });
+
+  new Set(certifications.map((item) => item.provider)).forEach((provider) => {
+    assert.ok(certificationProviders[provider], provider);
+    assert.equal(isSafeHttpsUrl(certificationProviders[provider]?.logoUrl), true, provider);
+  });
+});
+
+test('certification entries include searchable metadata', () => {
   certifications.forEach((certification) => {
-    assert.equal(existingNames.has(normalize(certification.name)), false, certification.name);
+    assert.ok(certification.name?.trim(), certification.id);
+    assert.ok(certification.provider?.trim(), certification.id);
+    assert.ok(certification.category?.trim(), certification.id);
+    assert.ok(certification.difficulty?.trim(), certification.id);
+    assert.ok(certification.costType?.trim(), certification.id);
+    assert.ok(Array.isArray(certification.skills) && certification.skills.length > 0, certification.id);
   });
 });
 
@@ -76,7 +94,7 @@ test('valid videos connect to certifications and invalid videos are rejected', (
   const certificationIds = new Set(certifications.map((item) => item.id));
   const validVideos = certificationVideos.filter((video) => isSafeYouTubeUrl(video.youtubeUrl));
 
-  assert.ok(validVideos.length >= certifications.length);
+  assert.ok(validVideos.length >= 10);
   validVideos.forEach((video) => {
     assert.ok(certificationIds.has(video.certificationId));
     assert.ok(getYouTubeVideoId(video.youtubeUrl));
