@@ -41,7 +41,7 @@ export default function Home() {
         },
       ]}
       subtitle="Structured guidance for navigating software, cloud, data, security, and adjacent tech careers."
-      title="The TechRoadMap"
+      title="TechRoadMap"
     >
       <section className="path-finder-banner glass-card">
         <div>
