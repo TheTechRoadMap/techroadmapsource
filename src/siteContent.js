@@ -475,7 +475,8 @@ export const aboutContent = {
       avatar: 'FaBullhorn',
       description:
         'Marketing-minded contributor working on the voice, messaging, and community feel behind the roadmap experience.',
-      links: [
+      contactEmail: "lehlohonolo@techroadmap.co.za",
+        links: [
         {
           href: 'https://www.linkedin.com/in/lehlohonolo-sithole-a14562374?utm_source=share_via&utm_content=profile&utm_medium=member_android',
           label: 'LinkedIn',
@@ -490,7 +491,8 @@ export const aboutContent = {
       avatar: 'FaRocket',
       description:
         'Developer learning the craft through practical product work, thoughtful problem solving, and continuous improvement.',
-      links: [
+      contactEmail: "mahlale@techroadmap.co.za",
+        links: [
         {
           href: 'https://www.linkedin.com/in/mahlale-molefi-547207307?utm_source=share_via&utm_content=profile&utm_medium=member_ios',
           label: 'LinkedIn',
