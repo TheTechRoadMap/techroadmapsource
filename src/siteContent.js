@@ -1,18 +1,21 @@
-import { languages } from './languages.js'; //Language Meta import
-import { roadmaps } from './roadmaps.js';   //Roadmap Meta import
+import { languages } from './languages.js'; // Language metadata catalog
+import { roadmaps } from './roadmaps.js'; // Roadmap metadata catalog
 
-const roadmapPages = import.meta.glob('../../../roadmaps/*.html', { //Roadmap Meta import 
+// Load the raw HTML lesson/detail pages so we can parse sections and metadata into structured content.
+const roadmapPages = import.meta.glob('../../../roadmaps/*.html', {
   eager: true,
   import: 'default',
   query: '?raw',
 });
 
-const languagePages = import.meta.glob('../../../languages/*.html', { //import of language pages for parsing
+// Language pages are parsed in the same way to keep the detail view consistent across the site.
+const languagePages = import.meta.glob('../../../languages/*.html', {
   eager: true,
   import: 'default',
   query: '?raw',
 });
 
+// Some imported pages contain mojibake text; this pattern helps detect and recover the clean UTF-8 form.
 const MOJIBAKE_PATTERN = /(?:\u00F0|\u00E2|\u00C3|\u00EF)/;
 
 const sharedSignals = {
