@@ -469,7 +469,7 @@ export const aboutContent = {
     },
     {
       name: 'Lehlohonolo Sithole',
-      role: 'Marketing Specialist',
+      role: 'UI/UX Designer & Marketing',
       badge: 'MKT',
       accent: 'orange',
       avatar: 'FaBullhorn',
