@@ -104,23 +104,14 @@ export default function TechNewsSlider() {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      <div className="section-heading-row">
+      <div className="section-heading-row news-heading-row">
         <div>
-          <span className="eyebrow">Industry watch</span>
           <h2>Latest Tech News</h2>
-          <p>Stay informed about developments shaping the technology industry.</p>
-          <span className={`news-feed-status news-feed-status--${feedMode}`}>
-            {getNewsFeedLabel(feedMode)}
-          </span>
+          <p>Stay current with the technology world</p>
         </div>
-        <div className="carousel-controls">
-          <button aria-label="Previous news articles" disabled={maxIndex === 0} onClick={() => goTo(activeIndex - 1)} type="button">
-            ←
-          </button>
-          <button aria-label="Next news articles" disabled={maxIndex === 0} onClick={() => goTo(activeIndex + 1)} type="button">
-            →
-          </button>
-        </div>
+        <Link className="home-section-link news-header-link" to="/news">
+          View All News
+        </Link>
       </div>
 
       {status === 'loading' ? (
@@ -155,26 +146,36 @@ export default function TechNewsSlider() {
               </div>
             ))}
           </div>
-          <div className="carousel-dots" aria-label="Choose news slide">
-            {Array.from({ length: maxIndex + 1 }, (_, index) => (
-              <button
-                aria-label={`Go to news slide ${index + 1}`}
-                aria-pressed={activeIndex === index}
-                className={activeIndex === index ? 'is-active' : ''}
-                key={index}
-                onClick={() => goTo(index)}
-                type="button"
-              />
-            ))}
+          <div className="news-slider__bottom-bar">
+            <div className="carousel-dots" aria-label="Choose news slide">
+              {Array.from({ length: maxIndex + 1 }, (_, index) => (
+                <button
+                  aria-label={`Go to news slide ${index + 1}`}
+                  aria-pressed={activeIndex === index}
+                  className={activeIndex === index ? 'is-active' : ''}
+                  key={index}
+                  onClick={() => goTo(index)}
+                  type="button"
+                />
+              ))}
+            </div>
+
+            <div className="news-slider__bottom-actions">
+              <Link className="home-section-link news-bottom-link" to="/news">
+                View All News
+              </Link>
+              <div className="carousel-controls">
+                <button aria-label="Previous news articles" disabled={maxIndex === 0} onClick={() => goTo(activeIndex - 1)} type="button">
+                  ‹
+                </button>
+                <button aria-label="Next news articles" disabled={maxIndex === 0} onClick={() => goTo(activeIndex + 1)} type="button">
+                  ›
+                </button>
+              </div>
+            </div>
           </div>
         </>
       ) : null}
-
-      <div className="centered-action">
-        <Link className="button-link button-link--secondary" to="/news">
-          View all news
-        </Link>
-      </div>
     </section>
   );
 }

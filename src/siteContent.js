@@ -415,9 +415,68 @@ export const homeStats = {
     countResourceLinks(roadmapContent) + countResourceLinks(languageContent),
 };
 
+export const missionSlides = [
+  {
+    id: 'empowerment',
+    tag: 'Our Founding Purpose',
+    title: 'Democratizing Tech Pathways for Everyone',
+    quote: '"Turning curiosity into real career momentum."',
+    description:
+      'Tech Roadmaps helps people turn curiosity into career momentum by organizing the smartest next steps in software, cloud, data, security, and digital product work. We focus on practical guidance, clear learning paths, and relatable support for beginners and professionals alike.',
+    image:
+      'https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?auto=format&fit=crop&w=1600&q=80',
+    location: 'Mount Rainier • Clear Horizons',
+  },
+  {
+    id: 'practical-skills',
+    tag: 'Practical Mastery',
+    title: 'Bridging Theory with Real-World Engineering',
+    quote: '"Building muscle memory through projects, not just lectures."',
+    description:
+      'We eliminate tutorial fatigue by focusing on what industry engineering teams actually value: hands-on repositories, production architectures, defensive coding practices, and measurable problem-solving.',
+    image:
+      'https://images.unsplash.com/photo-1448375240586-882707db888b?auto=format&fit=crop&w=1600&q=80',
+    location: 'Redwood Forest • Deep Roots',
+  },
+  {
+    id: 'guided-journey',
+    tag: 'Structured Guidance',
+    title: 'Guiding Every Milestone from Novice to Architect',
+    quote: '"A transparent map from your very first line of code to leadership."',
+    description:
+      'Every roadmap milestone is crafted with intention—connecting fundamentals, intermediate patterns, professional certifications, and portfolio projects into a cohesive, achievable trajectory.',
+    image:
+      'https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1600&q=80',
+    location: 'Yosemite Valley • Continuous Path',
+  },
+  {
+    id: 'global-community',
+    tag: 'Global Inclusivity',
+    title: 'Empowering Self-Taught & Career Switchers Worldwide',
+    quote: '"Opportunity should have no borders or prerequisites."',
+    description:
+      'We build with deep empathy for self-taught developers, career changers, and students across the globe—offering free, open-access, and high-impact curricula to foster global innovation.',
+    image:
+      'https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=1600&q=80',
+    location: 'Pacific Coast • Boundless Opportunities',
+  },
+  {
+    id: 'future-ready',
+    tag: 'Future-Proof Vision',
+    title: 'Pioneering the Next Wave of Technology & AI',
+    quote: '"Staying continuously adaptive in an accelerating world."',
+    description:
+      'Technology evolves relentlessly, and our mission evolves with it. We continuously update roadmaps with modern AI workflows, cloud-native deployments, and modern tooling to keep your career ahead.',
+    image:
+      'https://images.unsplash.com/photo-1531366936337-7c912a4589a7?auto=format&fit=crop&w=1600&q=80',
+    location: 'Nordic Auroras • Limitless Frontiers',
+  },
+];
+
 export const aboutContent = {
   mission:
     'Tech Roadmaps helps people turn curiosity into career momentum by organizing the smartest next steps in software, cloud, data, security, and digital product work. We focus on practical guidance, clear learning paths, and relatable support for beginners and professionals alike.',
+  missionSlides,
   team: [
     {
       name: 'Tumelo Kgware',

@@ -80,6 +80,36 @@ export const certificationProviders = {
     logoUrl: 'https://cdn.simpleicons.org/isc2',
     website: 'https://www.isc2.org/certifications',
   },
+  'Red Hat': {
+    description: 'Enterprise open source certifications validating hands-on skills in RHEL, Linux, Ansible, and cloud infrastructure.',
+    logoUrl: 'https://cdn.simpleicons.org/redhat',
+    website: 'https://www.redhat.com/en/services/certification',
+  },
+  Tableau: {
+    description: 'Data visualization and business intelligence certifications for data analysts, scientists, and decision makers.',
+    logoUrl: 'https://cdn.simpleicons.org/tableau',
+    website: 'https://www.tableau.com/learn/certification',
+  },
+  Docker: {
+    description: 'Containerization and container orchestration credentials validating Docker CLI, image building, and Swarm skills.',
+    logoUrl: 'https://cdn.simpleicons.org/docker',
+    website: 'https://www.docker.com/careers/',
+  },
+  Unity: {
+    description: 'Real-time 3D, game development, and interactive software certifications for Unity creators.',
+    logoUrl: 'https://cdn.simpleicons.org/unity',
+    website: 'https://unity.com/products/unity-certifications',
+  },
+  PeopleCert: {
+    description: 'Global examination institute providing ITIL and IT service management certifications.',
+    logoUrl: 'https://cdn.jsdelivr.net/npm/simple-icons@13.21.0/icons/itil.svg',
+    website: 'https://www.peoplecert.org/',
+  },
+  MongoDB: {
+    description: 'Certifications validating skills in document-based NoSQL database management, indexing, and developer tools.',
+    logoUrl: 'https://cdn.simpleicons.org/mongodb',
+    website: 'https://learn.mongodb.com/',
+  },
 };
 
 export const certifications = [
@@ -903,6 +933,423 @@ export const certifications = [
     officialUrl: 'https://www.isc2.org/certifications/csslp',
     recommendedCareerPaths: ['cybersecurity', 'backend-dev', 'devops'],
   },
+
+
+  // ─── AWS ──────────────────────────────────────────────────────────────────────
+
+  {
+    id: 'aws-cloud-practitioner',
+    name: 'AWS Certified Cloud Practitioner',
+    provider: 'AWS',
+    description: 'Foundational cloud knowledge including AWS core services, pricing, security, and support — ideal starting point for any AWS journey.',
+    category: 'cloud',
+    difficulty: 'Beginner',
+    duration: '4–6 weeks',
+    costType: 'Paid',
+    skills: ['AWS core services', 'Cloud concepts', 'Billing and pricing', 'Security basics', 'AWS support plans'],
+    officialUrl: 'https://aws.amazon.com/certification/certified-cloud-practitioner/',
+    recommendedCareerPaths: ['cloud-engineer', 'cloud-architect', 'devops-engineer', 'solutions-architect'],
+  },
+  {
+    id: 'aws-solutions-architect-associate',
+    name: 'AWS Certified Solutions Architect – Associate',
+    provider: 'AWS',
+    description: 'Design and deploy scalable, highly available systems on AWS. Covers core architectural best practices across compute, storage, networking, and databases.',
+    category: 'cloud',
+    difficulty: 'Intermediate',
+    duration: '8–12 weeks',
+    costType: 'Paid',
+    skills: ['AWS VPC and networking', 'EC2 and auto scaling', 'S3 and storage', 'RDS and DynamoDB', 'IAM and security', 'High availability design'],
+    officialUrl: 'https://aws.amazon.com/certification/certified-solutions-architect-associate/',
+    recommendedCareerPaths: ['cloud-architect', 'solutions-architect', 'cloud-engineer', 'devops-engineer'],
+  },
+  {
+    id: 'aws-machine-learning-specialty',
+    name: 'AWS Certified Machine Learning – Specialty',
+    provider: 'AWS',
+    description: 'Demonstrate expertise in building, training, and deploying ML models on AWS using SageMaker, data engineering pipelines, and ML best practices.',
+    category: 'ai',
+    difficulty: 'Advanced',
+    duration: '12–16 weeks',
+    costType: 'Paid',
+    skills: ['Amazon SageMaker', 'Data engineering for ML', 'Model training and tuning', 'ML deployment', 'AI services (Rekognition, Comprehend)'],
+    officialUrl: 'https://aws.amazon.com/certification/certified-machine-learning-specialty/',
+    recommendedCareerPaths: ['ai-engineer', 'data-scientist', 'ml-engineer'],
+  },
+  {
+    id: 'aws-database-specialty',
+    name: 'AWS Certified Database – Specialty',
+    provider: 'AWS',
+    description: 'Validate expertise in selecting, designing, and managing AWS database services including RDS, DynamoDB, Redshift, and Aurora.',
+    category: 'data',
+    difficulty: 'Advanced',
+    duration: '10–14 weeks',
+    costType: 'Paid',
+    skills: ['RDS and Aurora', 'DynamoDB design', 'Redshift data warehousing', 'Database migration', 'Caching with ElastiCache'],
+    officialUrl: 'https://aws.amazon.com/certification/certified-database-specialty/',
+    recommendedCareerPaths: ['database-administrator', 'data-engineer', 'cloud-engineer'],
+  },
+
+  // ─── MICROSOFT ────────────────────────────────────────────────────────────────
+
+  {
+    id: 'microsoft-azure-fundamentals',
+    name: 'Microsoft Certified: Azure Fundamentals (AZ-900)',
+    provider: 'Microsoft',
+    description: 'Foundational knowledge of cloud services and how those services are provided with Microsoft Azure — cloud concepts, core Azure services, security, and pricing.',
+    category: 'cloud',
+    difficulty: 'Beginner',
+    duration: '3–5 weeks',
+    costType: 'Paid',
+    skills: ['Azure core services', 'Cloud concepts (IaaS/PaaS/SaaS)', 'Azure pricing and SLAs', 'Azure security basics', 'Identity and compliance'],
+    officialUrl: 'https://learn.microsoft.com/en-us/credentials/certifications/azure-fundamentals/',
+    recommendedCareerPaths: ['cloud-engineer', 'cloud-architect', 'devops-engineer', 'systems-administrator'],
+  },
+  {
+    id: 'microsoft-azure-devops-engineer-expert',
+    name: 'Microsoft Certified: DevOps Engineer Expert (AZ-400)',
+    provider: 'Microsoft',
+    description: 'Demonstrate skills in combining people, process, and technology to deliver valuable products and services using DevOps practices on Azure.',
+    category: 'devops',
+    difficulty: 'Advanced',
+    duration: '10–14 weeks',
+    costType: 'Paid',
+    skills: ['Azure Pipelines (CI/CD)', 'Infrastructure as Code (Bicep, Terraform)', 'Monitoring with Azure Monitor', 'Security in DevOps', 'Artifact management'],
+    officialUrl: 'https://learn.microsoft.com/en-us/credentials/certifications/devops-engineer/',
+    recommendedCareerPaths: ['devops-engineer', 'sre', 'cloud-architect'],
+  },
+  {
+    id: 'microsoft-365-fundamentals',
+    name: 'Microsoft 365 Certified: Fundamentals (MS-900)',
+    provider: 'Microsoft',
+    description: 'Foundational knowledge of Microsoft 365 cloud services — productivity apps, Teams, SharePoint, security, compliance, and licensing.',
+    category: 'productivity',
+    difficulty: 'Beginner',
+    duration: '2–4 weeks',
+    costType: 'Paid',
+    skills: ['Microsoft 365 services', 'Teams and SharePoint', 'Security and compliance basics', 'Microsoft 365 licensing', 'Cloud collaboration'],
+    officialUrl: 'https://learn.microsoft.com/en-us/credentials/certifications/microsoft-365-fundamentals/',
+    recommendedCareerPaths: ['it-support-specialist', 'systems-administrator', 'technical-writer'],
+  },
+  {
+    id: 'microsoft-sql-server',
+    name: 'Microsoft SQL Server: Database Administration',
+    provider: 'Microsoft',
+    description: 'Validate skills in installing, configuring, and maintaining Microsoft SQL Server databases for enterprise applications.',
+    category: 'data',
+    difficulty: 'Intermediate',
+    duration: '6–10 weeks',
+    costType: 'Paid',
+    skills: ['SQL Server installation and configuration', 'T-SQL queries', 'Backup and recovery', 'High availability (AlwaysOn)', 'Security and permissions', 'Performance tuning'],
+    officialUrl: 'https://learn.microsoft.com/en-us/sql/sql-server/',
+    recommendedCareerPaths: ['database-administrator', 'data-engineer', 'systems-administrator'],
+  },
+  {
+    id: 'microsoft-power-bi',
+    name: 'Microsoft Certified: Power BI Data Analyst Associate (PL-300)',
+    provider: 'Microsoft',
+    description: 'Validate expertise in preparing, modelling, visualising, and analysing data with Power BI to deliver actionable business insights.',
+    category: 'data',
+    difficulty: 'Intermediate',
+    duration: '6–8 weeks',
+    costType: 'Paid',
+    skills: ['Power BI Desktop', 'DAX formulas', 'Data modelling', 'Power Query (M)', 'Report and dashboard design', 'Row-level security'],
+    officialUrl: 'https://learn.microsoft.com/en-us/credentials/certifications/data-analyst-associate/',
+    recommendedCareerPaths: ['data-analyst', 'database-administrator', 'data-scientist'],
+  },
+
+  // ─── CISCO ────────────────────────────────────────────────────────────────────
+
+  {
+    id: 'cisco-ccnp-enterprise',
+    name: 'Cisco CCNP Enterprise',
+    provider: 'Cisco Networking Academy',
+    description: 'Advanced networking certification covering enterprise routing, switching, SD-WAN, wireless, and automation for complex network environments.',
+    category: 'networking',
+    difficulty: 'Advanced',
+    duration: '16–24 weeks',
+    costType: 'Paid',
+    skills: ['Advanced routing (BGP, OSPF, EIGRP)', 'SD-WAN design', 'Enterprise wireless', 'Network automation (Python, Ansible)', 'Infrastructure virtualisation'],
+    officialUrl: 'https://www.cisco.com/c/en/us/training-events/training-certifications/certifications/professional/ccnp-enterprise.html',
+    recommendedCareerPaths: ['network-engineer', 'systems-administrator', 'cloud-engineer'],
+  },
+
+  // ─── COMPTIA ──────────────────────────────────────────────────────────────────
+
+  {
+    id: 'comptia-server-plus',
+    name: 'CompTIA Server+',
+    provider: 'CompTIA',
+    description: 'Validate skills in server administration — hardware, virtualisation, storage, network connectivity, and server-level security and troubleshooting.',
+    category: 'infrastructure',
+    difficulty: 'Intermediate',
+    duration: '6–8 weeks',
+    costType: 'Paid',
+    skills: ['Server hardware', 'Virtualisation (VMware, Hyper-V)', 'Storage management', 'Network connectivity', 'Disaster recovery', 'Server security'],
+    officialUrl: 'https://www.comptia.org/certifications/server',
+    recommendedCareerPaths: ['systems-administrator', 'it-support-specialist', 'database-administrator'],
+  },
+
+  // ─── GOOGLE ───────────────────────────────────────────────────────────────────
+
+  {
+    id: 'google-data-analytics',
+    name: 'Google Data Analytics Professional Certificate',
+    provider: 'Google',
+    description: 'Job-ready data analytics skills — data cleaning, analysis, and visualisation using spreadsheets, SQL, R, and Tableau in a hands-on certificate programme.',
+    category: 'data',
+    difficulty: 'Beginner',
+    duration: '6 months (self-paced)',
+    costType: 'Paid',
+    skills: ['Data cleaning', 'SQL basics', 'R programming', 'Tableau visualisation', 'Spreadsheets', 'Data storytelling'],
+    officialUrl: 'https://grow.google/certificates/data-analytics/',
+    recommendedCareerPaths: ['data-analyst', 'data-scientist', 'data-engineer'],
+  },
+  {
+    id: 'google-ux-design',
+    name: 'Google UX Design Professional Certificate',
+    provider: 'Google',
+    description: 'Hands-on UX design skills covering user research, wireframing, prototyping, and usability testing using Figma in a real-world project-based curriculum.',
+    category: 'design',
+    difficulty: 'Beginner',
+    duration: '6 months (self-paced)',
+    costType: 'Paid',
+    skills: ['UX research', 'Wireframing and prototyping', 'Figma', 'Usability testing', 'Interaction design', 'Accessibility'],
+    officialUrl: 'https://grow.google/certificates/ux-design/',
+    recommendedCareerPaths: ['ui-ux-designer', 'product-manager', 'frontend-developer'],
+  },
+  {
+    id: 'google-associate-android-developer',
+    name: 'Associate Android Developer Certification',
+    provider: 'Google',
+    description: 'Validate your Android development skills in Kotlin — covering UI design with Jetpack Compose, data persistence, networking, and testing.',
+    category: 'mobile',
+    difficulty: 'Intermediate',
+    duration: '6–10 weeks',
+    costType: 'Paid',
+    skills: ['Kotlin', 'Jetpack Compose', 'Android Architecture Components', 'Room database', 'Coroutines', 'Unit testing'],
+    officialUrl: 'https://developers.google.com/certification/associate-android-developer',
+    recommendedCareerPaths: ['mobile-developer', 'frontend-developer'],
+  },
+
+  // ─── IBM ──────────────────────────────────────────────────────────────────────
+
+  {
+    id: 'ibm-data-science-professional',
+    name: 'IBM Data Science Professional Certificate',
+    provider: 'IBM',
+    description: 'Comprehensive 10-course series covering Python, SQL, data visualisation, machine learning, and data science methodology through real-world projects.',
+    category: 'data',
+    difficulty: 'Beginner',
+    duration: '5 months (self-paced)',
+    costType: 'Paid',
+    skills: ['Python for data science', 'SQL', 'Data visualisation (Matplotlib, Seaborn)', 'Machine learning basics', 'Jupyter notebooks', 'IBM Watson'],
+    officialUrl: 'https://www.coursera.org/professional-certificates/ibm-data-science',
+    recommendedCareerPaths: ['data-scientist', 'data-analyst', 'ai-engineer'],
+  },
+  {
+    id: 'ibm-data-analyst-professional',
+    name: 'IBM Data Analyst Professional Certificate',
+    provider: 'IBM',
+    description: 'Job-ready data analyst skills covering Excel, SQL, Python, and IBM Cognos Analytics for real-world data analysis and visualisation.',
+    category: 'data',
+    difficulty: 'Beginner',
+    duration: '4 months (self-paced)',
+    costType: 'Paid',
+    skills: ['Excel for data analysis', 'SQL querying', 'Python (Pandas, NumPy)', 'IBM Cognos Analytics', 'Data visualisation', 'Capstone project'],
+    officialUrl: 'https://www.coursera.org/professional-certificates/ibm-data-analyst',
+    recommendedCareerPaths: ['data-analyst', 'data-scientist', 'database-administrator'],
+  },
+
+  // ─── ORACLE ───────────────────────────────────────────────────────────────────
+
+  {
+    id: 'oracle-java-programmer-oca',
+    name: 'Oracle Certified Associate Java Programmer (OCA)',
+    provider: 'Oracle University',
+    description: 'Validate foundational Java programming knowledge — OOP principles, data types, control flow, and basic Java SE APIs.',
+    category: 'programming',
+    difficulty: 'Beginner',
+    duration: '6–8 weeks',
+    costType: 'Paid',
+    skills: ['Java syntax and operators', 'OOP concepts', 'Arrays and ArrayList', 'Java control structures', 'Class design', 'Error handling basics'],
+    officialUrl: 'https://education.oracle.com/java-se-programmer-i/pexam_1Z0-808',
+    recommendedCareerPaths: ['software-developer', 'backend-developer', 'android-developer'],
+  },
+  {
+    id: 'oracle-database-administration',
+    name: 'Oracle Database Administration Certified Associate',
+    provider: 'Oracle University',
+    description: 'Validate skills in Oracle Database installation, configuration, storage management, user security, backup, recovery, and performance monitoring.',
+    category: 'data',
+    difficulty: 'Intermediate',
+    duration: '8–12 weeks',
+    costType: 'Paid',
+    skills: ['Oracle DB architecture', 'SQL and PL/SQL', 'Tablespace management', 'Backup and recovery (RMAN)', 'User and role management', 'Performance tuning'],
+    officialUrl: 'https://education.oracle.com/oracle-database-administration-i/pexam_1Z0-082',
+    recommendedCareerPaths: ['database-administrator', 'data-engineer', 'systems-administrator'],
+  },
+
+  // ─── LINUX FOUNDATION ─────────────────────────────────────────────────────────
+
+  {
+    id: 'linux-foundation-lfcs',
+    name: 'Linux Foundation Certified System Administrator (LFCS)',
+    provider: 'Linux Foundation',
+    description: 'Hands-on performance-based exam validating Linux sysadmin skills — file management, user administration, networking, service management, and storage.',
+    category: 'infrastructure',
+    difficulty: 'Intermediate',
+    duration: '6–10 weeks',
+    costType: 'Paid',
+    skills: ['Linux file system management', 'User and group administration', 'Systemd service management', 'Networking configuration', 'Storage management (LVM)', 'Security basics'],
+    officialUrl: 'https://training.linuxfoundation.org/certification/linux-foundation-certified-sysadmin-lfcs/',
+    recommendedCareerPaths: ['systems-administrator', 'devops-engineer', 'sre'],
+  },
+
+  // ─── RED HAT ──────────────────────────────────────────────────────────────────
+
+  {
+    id: 'redhat-rhcsa',
+    name: 'Red Hat Certified System Administrator (RHCSA)',
+    provider: 'Red Hat',
+    description: 'Industry-respected hands-on performance exam validating RHEL system administration — storage, user management, SELinux, and container basics.',
+    category: 'infrastructure',
+    difficulty: 'Intermediate',
+    duration: '8–12 weeks',
+    costType: 'Paid',
+    skills: ['RHEL administration', 'File systems and LVM', 'User and group management', 'SELinux configuration', 'Podman containers', 'Firewall and networking'],
+    officialUrl: 'https://www.redhat.com/en/services/certification/rhcsa',
+    recommendedCareerPaths: ['systems-administrator', 'devops-engineer', 'sre', 'cloud-engineer'],
+  },
+
+  // ─── TENSORFLOW / GOOGLE ──────────────────────────────────────────────────────
+
+  {
+    id: 'tensorflow-developer',
+    name: 'TensorFlow Developer Certificate',
+    provider: 'Google',
+    description: 'Validate proficiency in building and training neural networks using TensorFlow — covering computer vision, NLP, time series, and model deployment.',
+    category: 'ai',
+    difficulty: 'Intermediate',
+    duration: '8–12 weeks',
+    costType: 'Paid',
+    skills: ['TensorFlow 2.x', 'Neural networks', 'CNNs for computer vision', 'NLP with word embeddings', 'Time series forecasting', 'Model export and deployment'],
+    officialUrl: 'https://www.tensorflow.org/certificate',
+    recommendedCareerPaths: ['ai-engineer', 'ml-engineer', 'data-scientist'],
+  },
+
+  // ─── TABLEAU ──────────────────────────────────────────────────────────────────
+
+  {
+    id: 'tableau-data-analyst',
+    name: 'Tableau Certified Data Analyst',
+    provider: 'Tableau',
+    description: 'Validate expertise in connecting data, creating interactive visualisations, and communicating insights with Tableau Desktop and Tableau Public.',
+    category: 'data',
+    difficulty: 'Intermediate',
+    duration: '6–8 weeks',
+    costType: 'Paid',
+    skills: ['Tableau Desktop', 'Dashboard design', 'Calculated fields and LOD expressions', 'Data blending', 'Filters and parameters', 'Publishing to Tableau Server'],
+    officialUrl: 'https://www.tableau.com/learn/certification/certified-data-analyst',
+    recommendedCareerPaths: ['data-analyst', 'data-scientist', 'product-manager'],
+  },
+
+  // ─── DOCKER ───────────────────────────────────────────────────────────────────
+
+  {
+    id: 'docker-certified-associate',
+    name: 'Docker Certified Associate (DCA)',
+    provider: 'Docker',
+    description: 'Validate containerisation expertise — Docker engine, image management, networking, volumes, Docker Compose, and Docker Swarm orchestration.',
+    category: 'devops',
+    difficulty: 'Intermediate',
+    duration: '6–8 weeks',
+    costType: 'Paid',
+    skills: ['Docker engine and CLI', 'Container networking', 'Volume management', 'Dockerfile best practices', 'Docker Compose', 'Container security'],
+    officialUrl: 'https://training.mirantis.com/dca-certification-exam/',
+    recommendedCareerPaths: ['devops-engineer', 'sre', 'cloud-engineer', 'backend-developer'],
+  },
+
+  // ─── UNITY ────────────────────────────────────────────────────────────────────
+
+  {
+    id: 'unity-certified-developer',
+    name: 'Unity Certified Associate: Game Developer',
+    provider: 'Unity',
+    description: 'Validate foundational Unity development skills — scene management, C# scripting, physics, animation, UI, and building game projects.',
+    category: 'game-dev',
+    difficulty: 'Intermediate',
+    duration: '8–12 weeks',
+    costType: 'Paid',
+    skills: ['Unity Editor', 'C# scripting', 'Physics and colliders', 'Animation system', 'UI Toolkit', '2D/3D game development', 'Build and deployment'],
+    officialUrl: 'https://unity.com/products/unity-certifications',
+    recommendedCareerPaths: ['game-developer', 'software-developer'],
+  },
+
+  // ─── FLUTTER ──────────────────────────────────────────────────────────────────
+
+  {
+    id: 'flutter-developer-certificate',
+    name: 'Flutter Developer Certificate',
+    provider: 'Google',
+    description: 'Demonstrate proficiency in building cross-platform mobile apps with Flutter and Dart — covering widgets, state management, navigation, and Firebase integration.',
+    category: 'mobile',
+    difficulty: 'Intermediate',
+    duration: '6–10 weeks',
+    costType: 'Paid',
+    skills: ['Dart language', 'Flutter widget tree', 'State management (Provider/Riverpod)', 'Navigation and routing', 'Firebase integration', 'App Store deployment'],
+    officialUrl: 'https://developers.google.com/learn/pathways/intro-to-flutter',
+    recommendedCareerPaths: ['mobile-developer', 'frontend-developer'],
+  },
+
+  // ─── C# ───────────────────────────────────────────────────────────────────────
+
+  {
+    id: 'microsoft-csharp-certification',
+    name: 'Microsoft Certified: C# Developer',
+    provider: 'Microsoft',
+    description: 'Validate C# programming proficiency — OOP, .NET core APIs, async programming, LINQ, and building modern applications with C# and .NET.',
+    category: 'programming',
+    difficulty: 'Intermediate',
+    duration: '6–10 weeks',
+    costType: 'Paid',
+    skills: ['C# syntax and OOP', 'LINQ', 'Async/await', '.NET Core APIs', 'Entity Framework', 'Unit testing with xUnit'],
+    officialUrl: 'https://learn.microsoft.com/en-us/credentials/certifications/exams/98-361/',
+    recommendedCareerPaths: ['software-developer', 'backend-developer', 'game-developer'],
+  },
+
+  // ─── ITIL ─────────────────────────────────────────────────────────────────────
+
+  {
+    id: 'itil-foundation',
+    name: 'ITIL 4 Foundation',
+    provider: 'PeopleCert',
+    description: 'Introduction to IT service management (ITSM) principles using the ITIL 4 framework — service value system, practices, and the service lifecycle.',
+    category: 'it-management',
+    difficulty: 'Beginner',
+    duration: '3–4 weeks',
+    costType: 'Paid',
+    skills: ['ITIL service value system', 'Incident management', 'Change management', 'Problem management', 'Service desk practices', 'Continual improvement'],
+    officialUrl: 'https://www.peoplecert.org/focus-areas/it-governance-and-service-management/itil',
+    recommendedCareerPaths: ['it-support-specialist', 'systems-administrator', 'scrum-master', 'product-manager'],
+  },
+
+  // ─── MONGODB ──────────────────────────────────────────────────────────────────
+
+  {
+    id: 'mongodb-developer',
+    name: 'MongoDB Associate Developer Certification',
+    provider: 'MongoDB',
+    description: 'Validate skills in MongoDB — CRUD operations, data modelling, aggregation pipelines, indexing, and connecting applications with MongoDB drivers.',
+    category: 'data',
+    difficulty: 'Intermediate',
+    duration: '4–6 weeks',
+    costType: 'Paid',
+    skills: ['MongoDB CRUD operations', 'Document data modelling', 'Aggregation framework', 'Indexing strategies', 'MongoDB Atlas', 'Driver integration (Node.js/Python)'],
+    officialUrl: 'https://learn.mongodb.com/pages/mongodb-associate-developer-exam',
+    recommendedCareerPaths: ['backend-developer', 'fullstack-developer', 'database-administrator', 'data-engineer'],
+  },
+
 ];
 
 export const certificationVideos = [

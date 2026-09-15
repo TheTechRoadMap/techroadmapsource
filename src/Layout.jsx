@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 
 const navigation = [
   { to: '/', label: 'Home', end: true },
+  { to: '/roadmaps', label: 'Roadmaps' },
+  { to: '/careers', label: 'Careers' },
   { to: '/find-my-path', label: 'Find My Path' },
-  { to: '/languages', label: 'Languages' },
   { to: '/certifications', label: 'Certifications' },
   { to: '/news', label: 'News' },
   { to: '/about', label: 'About' },
@@ -14,8 +15,32 @@ function navClassName({ isActive }) {
   return `nav-link${isActive ? ' is-active' : ''}`;
 }
 
+function getInitialTheme() {
+  if (typeof window !== 'undefined' && window.localStorage) {
+    const stored = window.localStorage.getItem('theme');
+    if (stored === 'light' || stored === 'dark') {
+      return stored;
+    }
+  }
+  return 'dark';
+}
+
 export default function Layout() {
   const year = new Date().getFullYear();
+  const [theme, setTheme] = useState(getInitialTheme);
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    try {
+      localStorage.setItem('theme', theme);
+    } catch {
+      // ignore local storage errors
+    }
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
 
   return (
     <div className="app-shell">
@@ -40,6 +65,16 @@ export default function Layout() {
                 {item.label}
               </NavLink>
             ))}
+
+            <button
+              aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+              className="theme-toggle-btn"
+              onClick={toggleTheme}
+              title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+              type="button"
+            >
+              {theme === 'dark' ? 'Light' : 'Dark'}
+            </button>
           </nav>
         </div>
       </header>

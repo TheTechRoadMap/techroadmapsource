@@ -51,6 +51,7 @@ function PageHeader({ title, subtitle }) {
 }
 
 export default function CatalogPage({
+  hero,
   afterContent,
   children,
   title,
@@ -101,11 +102,11 @@ export default function CatalogPage({
 
   return (
     <>
-      <PageHeader subtitle={subtitle} title={title} />
+      {hero ? hero : <PageHeader subtitle={subtitle} title={title} />}
 
       {children}
 
-      <section className="search-filter" aria-label={`${title} search and filters`}>
+      <section className="search-filter" id={`${itemType}-search`} aria-label={`${title} search and filters`}>
         <label className="sr-only" htmlFor={`${itemType}-search`}>
           Search {title}
         </label>

@@ -43,7 +43,6 @@ export default function CertificationFolder({ certifications, provider, provider
 
         <span className="certification-folder__summary-meta">
           <span>{optionLabel(certifications.length)}</span>
-          <span className="certification-folder__chevron" aria-hidden="true">⌄</span>
         </span>
       </summary>
 
@@ -89,7 +88,7 @@ export default function CertificationFolder({ certifications, provider, provider
             rel="noopener noreferrer"
             target="_blank"
           >
-            Visit {provider} <span aria-hidden="true">→</span>
+            Visit {provider}
           </a>
         ) : null}
       </div>

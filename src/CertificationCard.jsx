@@ -45,7 +45,7 @@ export default function CertificationCard({ certification }) {
           rel="noopener noreferrer"
           target="_blank"
         >
-          View certification details <span aria-hidden="true">→</span>
+          View certification details
         </a>
       ) : (
         <span className="certification-card__link is-disabled" aria-disabled="true">
