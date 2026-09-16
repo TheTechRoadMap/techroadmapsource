@@ -1,29 +1,26 @@
 import React, { useEffect, useState } from 'react';
-import {
-  FaCloud,
-  FaCode,
-  FaCubes,
-  FaDatabase,
-  FaInfoCircle,
-  FaShieldAlt,
-  FaTerminal,
-} from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 function getCategoryIcon(category) {
   const icons = {
-    coding: FaCode,
-    cloud: FaCloud,
-    security: FaShieldAlt,
-    data: FaDatabase,
-    language: FaTerminal,
-    framework: FaCubes,
+    engineering: '</>',
+    coding: '</>',
+    cloud: 'CL',
+    security: 'SH',
+    data: 'DB',
+    ai: 'AI',
+    infrastructure: 'NW',
+    support: 'IT',
+    design: 'UX',
+    language: '{}',
+    framework: 'FW',
+    tooling: 'TL',
+    platform: 'PF',
   };
 
-  const Icon = icons[category] || FaInfoCircle;
   return (
     <span className="category-icon" aria-hidden="true">
-      <Icon />
+      {icons[category] ?? '•'}
     </span>
   );
 }
@@ -54,6 +51,9 @@ function PageHeader({ title, subtitle }) {
 }
 
 export default function CatalogPage({
+  hero,
+  afterContent,
+  children,
   title,
   subtitle,
   infoTitle,
@@ -102,9 +102,11 @@ export default function CatalogPage({
 
   return (
     <>
-      <PageHeader subtitle={subtitle} title={title} />
+      {hero ? hero : <PageHeader subtitle={subtitle} title={title} />}
 
-      <section className="search-filter" aria-label={`${title} search and filters`}>
+      {children}
+
+      <section className="search-filter" id={`${itemType}-search`} aria-label={`${title} search and filters`}>
         <label className="sr-only" htmlFor={`${itemType}-search`}>
           Search {title}
         </label>
@@ -209,6 +211,8 @@ export default function CatalogPage({
           </div>
         </section>
       ) : null}
+
+      {afterContent}
     </>
   );
 }

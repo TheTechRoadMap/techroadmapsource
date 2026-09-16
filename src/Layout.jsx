@@ -1,18 +1,46 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 
 const navigation = [
   { to: '/', label: 'Home', end: true },
+  { to: '/roadmaps', label: 'Roadmaps' },
+  { to: '/careers', label: 'Careers' },
+  { to: '/find-my-path', label: 'Find My Path' },
+  { to: '/certifications', label: 'Certifications' },
+  { to: '/news', label: 'News' },
   { to: '/about', label: 'About' },
-  { to: '/languages', label: 'Languages' },
 ];
 
 function navClassName({ isActive }) {
   return `nav-link${isActive ? ' is-active' : ''}`;
 }
 
+function getInitialTheme() {
+  if (typeof window !== 'undefined' && window.localStorage) {
+    const stored = window.localStorage.getItem('theme');
+    if (stored === 'light' || stored === 'dark') {
+      return stored;
+    }
+  }
+  return 'dark';
+}
+
 export default function Layout() {
   const year = new Date().getFullYear();
+  const [theme, setTheme] = useState(getInitialTheme);
+
+  useEffect(() => {
+    document.documentElement.setAttribute('data-theme', theme);
+    try {
+      localStorage.setItem('theme', theme);
+    } catch {
+      // ignore local storage errors
+    }
+  }, [theme]);
+
+  const toggleTheme = () => {
+    setTheme((prev) => (prev === 'dark' ? 'light' : 'dark'));
+  };
 
   return (
     <div className="app-shell">
@@ -23,7 +51,7 @@ export default function Layout() {
       <header className="site-nav-shell">
         <div className="site-nav">
           <NavLink className="brand-mark" to="/">
-            TechRoadMaps
+            TechRoadMap
           </NavLink>
 
           <nav className="nav-links" aria-label="Primary">
@@ -37,6 +65,16 @@ export default function Layout() {
                 {item.label}
               </NavLink>
             ))}
+
+            <button
+              aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+              className="theme-toggle-btn"
+              onClick={toggleTheme}
+              title={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
+              type="button"
+            >
+              {theme === 'dark' ? 'Light' : 'Dark'}
+            </button>
           </nav>
         </div>
       </header>
@@ -46,7 +84,7 @@ export default function Layout() {
       </main>
 
       <footer className="footer">
-        <p>&copy; {year} Tech Roadmaps. All rights reserved.</p>
+        <p>&copy; {year} TechRoadMap. All rights reserved.</p>
       </footer>
     </div>
   );
