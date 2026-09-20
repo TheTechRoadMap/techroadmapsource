@@ -1,57 +1,158 @@
-import React from 'react';
-import {
-  FaBullhorn,
-  FaCode,
-  FaEnvelope,
-  FaGithub,
-  FaInstagram,
-  FaPhoneAlt,
-  FaRocket,
-  FaTiktok,
-  FaUser,
-  FaVial,
-  FaLinkedin,
-  FaArrowRight,
-} from 'react-icons/fa';
-import { aboutContent } from './siteContent.js';
+import React, { useCallback, useEffect, useState } from 'react';
+import { aboutContent, missionSlides } from './siteContent.js';
 import { usePageMeta } from './pageMeta.js';
 
 const teamIconMap = {
-  FaBullhorn,
-  FaCode,
-  FaRocket,
-  FaUser,
-  FaVial,
+  FaBullhorn: 'MKT',
+  FaCode: '</>',
+  FaRocket: 'DEV',
+  FaUser: 'PM',
+  FaVial: 'QA',
 };
 
 function renderSocialIcon(label) {
   const normalized = label.toLowerCase();
 
   if (normalized.includes('tiktok')) {
-    return <FaTiktok className="social-icon" aria-hidden="true" />;
+    return <span className="social-icon" aria-hidden="true">TT</span>;
   }
 
   if (normalized.includes('instagram')) {
-    return <FaInstagram className="social-icon" aria-hidden="true" />;
+    return <span className="social-icon" aria-hidden="true">IG</span>;
   }
 
   if (normalized.includes('linkedin')) {
-    return <FaLinkedin className="social-icon" aria-hidden="true" />;
+    return <span className="social-icon" aria-hidden="true">IN</span>;
   }
 
   if (normalized.includes('github')) {
-    return <FaGithub className="social-icon" aria-hidden="true" />;
+    return <span className="social-icon" aria-hidden="true">GH</span>;
   }
 
   if (normalized.includes('email')) {
-    return <FaEnvelope className="social-icon" aria-hidden="true" />;
+    return <span className="social-icon" aria-hidden="true">@</span>;
   }
 
   if (normalized.includes('call') || normalized.includes('phone')) {
-    return <FaPhoneAlt className="social-icon" aria-hidden="true" />;
+    return <span className="social-icon" aria-hidden="true">TEL</span>;
   }
 
-  return <FaArrowRight className="social-icon" aria-hidden="true" />;
+  return <span className="social-icon" aria-hidden="true">LINK</span>;
+}
+
+function MissionSlider({ slides }) {
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [isPaused, setIsPaused] = useState(false);
+
+  const total = slides.length;
+
+  const nextSlide = useCallback(() => {
+    setCurrentIndex((prev) => (prev + 1) % total);
+  }, [total]);
+
+  const prevSlide = useCallback(() => {
+    setCurrentIndex((prev) => (prev - 1 + total) % total);
+  }, [total]);
+
+  const goToSlide = useCallback((index) => {
+    setCurrentIndex(index);
+  }, []);
+
+  // Autoplay every 6 seconds unless user hovers or interacts
+  useEffect(() => {
+    if (isPaused) return;
+    const interval = setInterval(() => {
+      nextSlide();
+    }, 6000);
+    return () => clearInterval(interval);
+  }, [isPaused, nextSlide]);
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'ArrowLeft') {
+      prevSlide();
+    } else if (e.key === 'ArrowRight') {
+      nextSlide();
+    }
+  };
+
+  const activeSlide = slides[currentIndex];
+
+  return (
+    <section
+      aria-label="Our Mission Carousel"
+      className="mission-slider-card"
+      onBlur={() => setIsPaused(false)}
+      onFocus={() => setIsPaused(true)}
+      onKeyDown={handleKeyDown}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+      tabIndex="0"
+    >
+      {/* Background Nature Layers with Smooth Cross-fade */}
+      <div className="mission-bg-wrapper">
+        {slides.map((slide, idx) => (
+          <div
+            aria-hidden="true"
+            className={`mission-bg-layer ${idx === currentIndex ? 'is-active' : ''}`}
+            key={slide.id}
+            style={{ backgroundImage: `url(${slide.image})` }}
+          />
+        ))}
+        <div className="mission-bg-overlay" />
+      </div>
+
+      {/* Foreground Content */}
+      <div className="mission-content-container">
+        <div className="mission-text-block" key={activeSlide.id}>
+          <h2 className="mission-title">{activeSlide.title}</h2>
+          <blockquote className="mission-quote">{activeSlide.quote}</blockquote>
+          <p className="mission-desc">{activeSlide.description}</p>
+        </div>
+
+        {/* Controls: Counter, Navigation Dots, Prev / Next Buttons */}
+        <div className="mission-controls-row">
+          <div className="mission-counter">
+            <span className="current-num">0{currentIndex + 1}</span>
+            <span className="separator">/</span>
+            <span className="total-num">0{total}</span>
+          </div>
+
+          <div aria-label="Choose mission slide" className="mission-dots-nav" role="tablist">
+            {slides.map((slide, idx) => (
+              <button
+                aria-label={`Go to slide ${idx + 1}: ${slide.title}`}
+                aria-selected={idx === currentIndex}
+                className={`mission-dot-btn ${idx === currentIndex ? 'is-active' : ''}`}
+                key={slide.id}
+                onClick={() => goToSlide(idx)}
+                role="tab"
+                type="button"
+              />
+            ))}
+          </div>
+
+          <div className="mission-arrow-group">
+            <button
+              aria-label="Previous mission message"
+              className="mission-arrow-btn"
+              onClick={prevSlide}
+              type="button"
+            >
+              ‹
+            </button>
+            <button
+              aria-label="Next mission message"
+              className="mission-arrow-btn"
+              onClick={nextSlide}
+              type="button"
+            >
+              ›
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+  );
 }
 
 export default function About() {
@@ -60,6 +161,8 @@ export default function About() {
     'Learn about the Tech Roadmaps mission, the team behind the platform, and how to get in touch.',
   );
 
+  const slides = aboutContent.missionSlides || missionSlides;
+
   return (
     <>
       <header className="header">
@@ -67,10 +170,7 @@ export default function About() {
         <p>Learn more about the mission behind this platform, the people shaping it, and the best ways to connect.</p>
       </header>
 
-      <section className="mission">
-        <h2>Our Mission</h2>
-        <p>{aboutContent.mission}</p>
-      </section>
+      <MissionSlider slides={slides} />
 
       <section className="team-card">
         <h2>Meet the Team</h2>
@@ -79,7 +179,7 @@ export default function About() {
             <article className="team-member" key={member.name}>
               <div className={`member-badge member-badge--${member.accent}`}>
                 <span className="member-avatar" aria-hidden="true">
-                  {React.createElement(teamIconMap[member.avatar] || FaUser)}
+                  {teamIconMap[member.avatar] || 'TEAM'}
                 </span>
               </div>
               <div className="member-meta">
@@ -87,19 +187,21 @@ export default function About() {
                 <span className={`role-tag role-tag--${member.accent}`}>{member.role}</span>
               </div>
               <p>{member.description}</p>
-              <ul className="contact-list">
-                <li>
-                  <span className="contact-label">Email</span>
-                  <a href={`mailto:${member.contactEmail}`}>{member.contactEmail}</a>
-                </li>
-              </ul>
+              {member.contactEmail ? (
+                <ul className="contact-list">
+                  <li>
+                    <span className="contact-label">Email</span>
+                    <a href={`mailto:${member.contactEmail}`}>{member.contactEmail}</a>
+                  </li>
+                </ul>
+              ) : null}
               <div className="team-social">
                 {member.links.map((link) => (
                   <a
                     aria-label={link.label}
                     href={link.href}
                     key={link.href}
-                    rel="noreferrer"
+                    rel="noopener noreferrer"
                     target={link.href.startsWith('http') ? '_blank' : undefined}
                   >
                     {renderSocialIcon(link.label)}
@@ -130,7 +232,7 @@ export default function About() {
               aria-label={link.label}
               href={link.href}
               key={link.href}
-              rel="noreferrer"
+              rel="noopener noreferrer"
               target={link.href.startsWith('http') ? '_blank' : undefined}
             >
               {renderSocialIcon(link.label)}

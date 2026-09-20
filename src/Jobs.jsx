@@ -1,4 +1,5 @@
 import React from 'react';
+import { isSafeHttpsUrl } from './contentUtils.js';
 import { jobsContent } from './siteContent.js';
 import { usePageMeta } from './pageMeta.js';
 
@@ -33,9 +34,13 @@ export default function Jobs() {
                 <ul className="content-list">
                   {column.links.map((link) => (
                     <li key={link.href}>
-                      <a href={link.href} rel="noreferrer" target="_blank">
-                        {link.label}
-                      </a>
+                      {isSafeHttpsUrl(link.href) ? (
+                        <a href={link.href} rel="noopener noreferrer" target="_blank">
+                          {link.label}
+                        </a>
+                      ) : (
+                        link.label
+                      )}
                     </li>
                   ))}
                 </ul>
