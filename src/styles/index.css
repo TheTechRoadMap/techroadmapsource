@@ -3683,6 +3683,17 @@ html[data-theme="light"] {
   color: #475569;
 }
 
+[data-theme="light"] .provider-logo {
+  background: rgba(148, 163, 184, 0.14);
+  border-color: rgba(148, 163, 184, 0.35);
+  color: var(--brand-soft);
+}
+
+[data-theme="light"] .certification-folder .provider-logo {
+  background: rgba(148, 163, 184, 0.13);
+  border-color: rgba(148, 163, 184, 0.32);
+}
+
 /* Buttons in Light Mode */
 [data-theme="light"] .btn-secondary,
 [data-theme="light"] .career-detail__btn-secondary {
