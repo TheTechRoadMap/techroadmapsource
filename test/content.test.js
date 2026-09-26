@@ -4,32 +4,32 @@ import {
   certificationProviders,
   certificationVideos,
   certifications,
-} from '../src/certifications.js';
+} from '../src/data/certifications.js';
 import {
   filterCertifications,
   filterNews,
   getYouTubeVideoId,
   isSafeHttpsUrl,
   isSafeYouTubeUrl,
-} from '../src/contentUtils.js';
+} from '../src/utils/contentUtils.js';
 import {
   calculatePathRecommendations,
   findPathQuestions,
-} from '../src/findPathData.js';
-import { languages } from '../src/languages.js';
-import { roadmaps } from '../src/roadmaps.js';
-import { SAMPLE_TECH_NEWS } from '../src/techNews.js';
+} from '../src/data/findPathData.js';
+import { languages } from '../src/data/languages.js';
+import { roadmaps } from '../src/data/roadmaps.js';
+import { SAMPLE_TECH_NEWS } from '../src/data/techNews.js';
 import {
   categorizeTechStory,
   loadTechNews,
   mapHackerNewsStory,
-} from '../src/techNews.js';
-import { technologyConnections } from '../src/technologyConnections.js';
+} from '../src/data/techNews.js';
+import { technologyConnections } from '../src/data/technologyConnections.js';
 import {
   getRoadmapLearningPlan,
   roadmapPhaseTracks,
   stepProjectsByRoadmap,
-} from '../src/roadmapLearningPlans.js';
+} from '../src/data/roadmapLearningPlans.js';
 
 test('certification catalog contains a broad set of unique entries', () => {
   assert.ok(certifications.length >= 55);
