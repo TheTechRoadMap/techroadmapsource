@@ -1,6 +1,6 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { certificationProviders } from '../../data/certifications.js';
-import { isSafeHttpsUrl } from '../../utils/contentUtils.js';
 import ProviderIcon from '../catalog/ProviderIcon.jsx';
 
 function shortDescription(description) {
@@ -13,7 +13,6 @@ function shortDescription(description) {
 }
 
 export default function CertificationCard({ certification }) {
-  const hasOfficialUrl = isSafeHttpsUrl(certification.officialUrl);
   const providerDetails = certificationProviders[certification.provider];
 
   return (
@@ -36,20 +35,13 @@ export default function CertificationCard({ certification }) {
         {shortDescription(certification.description)}
       </p>
 
-      {hasOfficialUrl ? (
-        <a
-          className="certification-card__link"
-          href={certification.officialUrl}
-          rel="noopener noreferrer"
-          target="_blank"
-        >
-          View certification details
-        </a>
-      ) : (
-        <span className="certification-card__link is-disabled" aria-disabled="true">
-          Certification link unavailable
-        </span>
-      )}
+      <Link
+        className="certification-card__link"
+        state={{ from: '/certifications' }}
+        to={`/certifications/${encodeURIComponent(certification.id)}`}
+      >
+        View certification details
+      </Link>
     </article>
   );
 }

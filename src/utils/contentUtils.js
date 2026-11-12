@@ -41,7 +41,7 @@ export function filterCertifications(items, filters = {}) {
   return items.filter((item) => {
     const matchesSearch =
       !search ||
-      `${item.name} ${item.provider} ${item.description} ${item.skills.join(' ')}`
+      `${item.name} ${item.provider} ${item.description} ${item.credentialType ?? ''} ${(item.skills ?? []).join(' ')}`
         .toLowerCase()
         .includes(search);
     const matchesProvider = !filters.provider || filters.provider === 'all' || item.provider === filters.provider;
@@ -49,8 +49,10 @@ export function filterCertifications(items, filters = {}) {
     const matchesDifficulty =
       !filters.difficulty || filters.difficulty === 'all' || item.difficulty === filters.difficulty;
     const matchesCost = !filters.costType || filters.costType === 'all' || item.costType === filters.costType;
+    const matchesCredentialType =
+      !filters.credentialType || filters.credentialType === 'all' || item.credentialType === filters.credentialType;
 
-    return matchesSearch && matchesProvider && matchesCategory && matchesDifficulty && matchesCost;
+    return matchesSearch && matchesProvider && matchesCategory && matchesDifficulty && matchesCost && matchesCredentialType;
   });
 }
 

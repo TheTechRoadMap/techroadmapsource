@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { certificationCategories } from '../../data/certifications.js';
 import { isSafeHttpsUrl } from '../../utils/contentUtils.js';
 import { Icon } from '../ui/Icon.jsx';
@@ -8,7 +9,7 @@ function optionLabel(count) {
   return `${count} ${count === 1 ? 'option' : 'options'}`;
 }
 
-export default function CertificationFolder({ certifications, provider, providerDetails }) {
+export default function CertificationFolder({ certifications, provider, providerDetails, returnTo = '/certifications' }) {
   const categories = [...new Set(certifications.map((item) => item.category))]
     .map((category) => certificationCategories[category])
     .filter(Boolean)
@@ -47,24 +48,36 @@ export default function CertificationFolder({ certifications, provider, provider
         <ul className="certification-folder__list">
           {certifications.map((certification) => (
             <li key={certification.id}>
-              <a
+              <Link
                 className="certification-folder__link"
-                href={certification.officialUrl}
-                rel="noopener noreferrer"
-                target="_blank"
+                state={{ from: returnTo }}
+                to={`/certifications/${encodeURIComponent(certification.id)}`}
               >
                 <span>
                   <strong>{certification.name}</strong>
                   <small>
-                    {certification.credentialType ?? 'Certification'}
+                    {certification.credentialType}
                     {' · '}
                     {certification.difficulty}
                     {' · '}
                     {certification.costType}
                   </small>
+                  <small>{certification.description}</small>
+                  {certification.skills.length ? (
+                    <small>Skills: {certification.skills.join(', ')}</small>
+                  ) : null}
+                  {typeof certification.examRequired === 'boolean' ? (
+                    <small>{certification.examRequired ? 'Exam required' : 'No exam required'}</small>
+                  ) : null}
+                  <small>
+                    {certification.lastVerified
+                      ? `Provider details checked ${certification.lastVerified}`
+                      : 'Provider details need review'}
+                  </small>
                 </span>
-                <Icon name="external" size={16} />
-              </a>
+                <span className="certification-folder__detail-label">View details</span>
+                <Icon name="next" size={16} />
+              </Link>
             </li>
           ))}
         </ul>

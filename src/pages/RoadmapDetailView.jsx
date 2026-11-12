@@ -3,6 +3,7 @@ import { Link, useParams } from 'react-router-dom';
 import { getRoadmapById } from '../data/roadmapsData.js';
 import { usePageMeta } from '../utils/pageMeta.js';
 import { Icon, ResourceIcon } from '../components/ui/Icon.jsx';
+import CertificationRecommendations from '../components/catalog/CertificationRecommendations.jsx';
 
 export default function RoadmapDetailView() {
   const { id } = useParams();
@@ -209,35 +210,9 @@ export default function RoadmapDetailView() {
             </button>
           </div>
 
-          {/* RELATED Section: Certifications */}
-          <div className="glass-card sidebar-card related-card">
-            <span className="sidebar-eyebrow">RELATED</span>
-            
-            <div className="related-certifications-block">
-              <h3 className="related-block-title">
-                {roadmap.relatedCertifications.length} Certifications
-              </h3>
-
-              <div className="related-certs-list">
-                {roadmap.relatedCertifications.map((cert) => (
-                  <a
-                    key={cert.id}
-                    className="related-cert-item"
-                    href={cert.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <div className="related-cert-info">
-                      <span className="related-cert-provider">{cert.provider}</span>
-                      <strong className="related-cert-name">{cert.name}</strong>
-                    </div>
-                  </a>
-                ))}
-              </div>
-            </div>
-          </div>
         </aside>
       </div>
+      <CertificationRecommendations roadmapId={roadmap.id} />
     </div>
   );
 }

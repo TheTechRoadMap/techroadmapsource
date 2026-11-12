@@ -1,7 +1,8 @@
 import React, { useMemo, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { calculatePathRecommendations, findPathQuestions } from '../data/findPathData.js';
-import { languageContent, roadmapContent } from '../data/siteContent.js';
+import { roadmapsData } from '../data/roadmapsData.js';
+import { languageContent } from '../data/siteContent.js';
 import { getTechnologyConnections } from '../data/technologyConnections.js';
 import { usePageMeta } from '../utils/pageMeta.js';
 
@@ -12,7 +13,7 @@ export default function FindPathPage() {
   const question = findPathQuestions[step];
   const selectedAnswer = question ? answers[question.id] : '';
   const recommendations = useMemo(
-    () => (showResults ? calculatePathRecommendations(answers, roadmapContent) : []),
+    () => (showResults ? calculatePathRecommendations(answers, roadmapsData) : []),
     [answers, showResults],
   );
 

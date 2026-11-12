@@ -1,0 +1,40 @@
+# Certification verification log
+
+Research and catalog changes recorded on **2026-11-03**. Provider offerings and examination terms can change; consult the linked provider page before enrolment.
+
+## Removed from active recommendations
+
+| Listing | Reason | Primary source |
+|---|---|---|
+| Google Associate Android Developer Certification (`google-associate-android-developer`) | Google says the exam is retired and new registrations are no longer accepted. | [Google certification page](https://developers.google.com/certification/associate-android-developer) |
+| TensorFlow Developer Certificate (`tensorflow-developer`) | TensorFlow says its certificate exam is closed while it evaluates the next programme step. Existing credentials remain valid for three years from passing. | [TensorFlow certificate page](https://www.tensorflow.org/certificate) |
+| Microsoft Certified: C# Developer (`microsoft-csharp-certification`) | The linked Microsoft 98-361 Software Development Fundamentals exam retired on 2022-06-30; the listing incorrectly presented that exam as a current C# certification. | [Microsoft exam 98-361](https://learn.microsoft.com/en-us/credentials/certifications/exams/98-361/) |
+| AWS Certified Machine Learning – Specialty (`aws-machine-learning-specialty`) | AWS states that the final exam delivery was 2026-03-31. The catalog now recommends its current Machine Learning Engineer – Associate certification instead. | [AWS Machine Learning Specialty](https://aws.amazon.com/certification/certified-machine-learning-specialty/) |
+| AWS Certified Database – Specialty (`aws-database-specialty`) | The credential URL redirects to AWS's general certification index rather than an active credential page. The current Data Engineer – Associate certification is relevant to AWS data pipeline and data-store work, but is not presented as an exact equivalent. | [AWS certification index](https://aws.amazon.com/certification/) |
+| Microsoft 365 Certified: Fundamentals (MS-900) (`microsoft-365-fundamentals`) | Microsoft marks this certification as retired. No replacement is represented as available until Microsoft publishes its announced refreshed fundamentals certification. | [Microsoft certification page](https://learn.microsoft.com/en-us/credentials/certifications/microsoft-365-fundamentals/); [Microsoft certification refresh announcement](https://techcommunity.microsoft.com/blog/skills-hub-blog/certifications-refresh-ai-focused-and-fundamentals-updates/4446638) |
+
+These removals do not remove the related learning areas from the roadmaps. Android and Flutter learning remain available as learning resources; the closed TensorFlow and retired Microsoft exams are not recommended as current credentials.
+
+## Added or corrected
+
+| Catalog record | Change | Primary source and checked facts |
+|---|---|---|
+| Microsoft Certified: Azure Administrator Associate (`microsoft-azure-administrator-associate`) | Added as an intermediate, exam-based Azure credential. | [Microsoft Learn](https://learn.microsoft.com/en-us/credentials/certifications/azure-administrator/); page identifies the current credential. Exam code recorded as AZ-104. |
+| Microsoft Certified: Azure Database Administrator Associate (`microsoft-azure-database-administrator-associate`) | Added as an intermediate database credential for Azure SQL and hybrid SQL Server administration. | [Microsoft Learn](https://learn.microsoft.com/en-us/credentials/certifications/azure-database-administrator-associate/); page identifies the credential, DP-300 exam, and 12-month renewal frequency. |
+| Google Cloud Certified: Cloud Digital Leader (`google-cloud-digital-leader`) | Added as a foundational Google Cloud certification. | [Google Cloud](https://cloud.google.com/learn/certification/cloud-digital-leader); provider lists a 90-minute proctored exam, no prerequisites, USD $99 plus applicable tax, and three-year validity. The catalog records only paid/exam-required and the validity period, not a fixed fee. |
+| AWS Certified Machine Learning Engineer – Associate (`aws-machine-learning-engineer-associate`) | Added as the active AWS associate-level ML engineering certification after the Specialty exam closed. | [AWS certification page](https://aws.amazon.com/certification/certified-machine-learning-engineer-associate/); confirms the credential, role focus, one-year experience guidance, and three-year validity. AWS identifies it as an alternative for production ML workloads on the retired Specialty page. |
+| AWS Certified Data Engineer – Associate (`aws-data-engineer-associate`) | Added for AWS data engineering and pipeline skills; relevant but not an exact replacement for the retired Database Specialty. | [AWS certification page](https://aws.amazon.com/certification/certified-data-engineer-associate/) and [official exam guide](https://docs.aws.amazon.com/aws-certification/latest/data-engineer-associate-01/data-engineer-associate-01.html); confirm current credential and exam code DEA-C01. |
+| Flutter and Dart Learning Path (`flutter-developer-certificate`) | Retained the stable ID but corrected the entry from an unsupported “Flutter Developer Certificate” claim to a free, non-exam learning path. | [Flutter documentation](https://docs.flutter.dev/learn); the page provides an official learning pathway, not a certification examination. |
+| Docker Certified Associate (`docker-certified-associate`) | Retained; updated the URL to the current Mirantis-hosted Docker credential page rather than removing it based on Docker's unrelated marketing URL. | [Mirantis Docker Certification](https://training.mirantis.com/certification/dca-certification-exam/); page advertises exam registration, global online proctoring, and a USD $199/€200 fee at the time checked. |
+| Microsoft Certified: Azure AI Fundamentals (`microsoft-azure-ai-fundamentals`) | Kept and updated the exam code to AI-901. | [Microsoft Learn](https://learn.microsoft.com/en-us/credentials/certifications/azure-ai-fundamentals/); current page lists exam AI-901. |
+| Cisco CCNA Automation (`cisco-devnet-associate`) | Updated the former DevNet Associate label and generic examination link to Cisco's current CCNA Automation page. | [Cisco](https://www.cisco.com/site/us/en/learn/training-certifications/certifications/automation/ccna-automation/index.html); current page lists exam 200-901 CCNAAUTO, USD $300, no prerequisites, and three-year validity. |
+| Cisco cybersecurity credentials | Updated the CCST Cybersecurity and CCNA Cybersecurity links to Cisco's current cybersecurity certifications page. | [Cisco](https://www.cisco.com/site/us/en/learn/training-certifications/certifications/cybersecurity/index.html); the page currently lists CCST Cybersecurity, CCNA Cybersecurity, and the ethical-hacking certificate. |
+| SQL Server documentation (`microsoft-sql-server`) | Reclassified an ordinary Microsoft documentation page from a purported certification to a free learning resource. | [Microsoft SQL Server documentation](https://learn.microsoft.com/en-us/sql/sql-server/); page describes technical documentation for getting started, administration, and development. |
+
+The Google Cloud fee above is a source note, not a guaranteed South African price. Currency conversion, tax, availability, and provider terms may change.
+
+## Verification state and follow-up
+
+Records above that include `lastVerified` and `verificationStatus: 'verified'` were checked directly against the linked provider page on the date shown in the data. Other active records are explicitly marked `needs-review` by the catalog normalizer. Their official links and status, current exam codes, exam requirements, prerequisites, costs, and South African availability have **not** all been independently rechecked in this update.
+
+Follow up first on entries with older or broad provider URLs, entries whose credential type is inferred from the name, and records with region-dependent cost or admissions details. Do not infer free exam access from free preparation material.

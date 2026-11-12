@@ -59,26 +59,6 @@ export const roadmapsData = [
       "Version Control (Git)",
       "Databases"
     ],
-    "relatedCertifications": [
-      {
-        "id": "oracle-java-programmer-oca",
-        "name": "Oracle Java Programmer (OCA)",
-        "provider": "Oracle",
-        "url": "https://education.oracle.com/"
-      },
-      {
-        "id": "coursera-meta-front-end-developer",
-        "name": "Meta Front-End Developer",
-        "provider": "Meta",
-        "url": "https://www.coursera.org/"
-      },
-      {
-        "id": "microsoft-csharp-certification",
-        "name": "Microsoft Certified: C# Developer",
-        "provider": "Microsoft",
-        "url": "https://learn.microsoft.com/"
-      }
-    ],
     "steps": [
       {
         "number": 1,
@@ -324,26 +304,6 @@ export const roadmapsData = [
       "Networking",
       "Linux",
       "Python"
-    ],
-    "relatedCertifications": [
-      {
-        "id": "comptia-security-plus",
-        "name": "CompTIA Security+",
-        "provider": "CompTIA",
-        "url": "https://www.comptia.org/"
-      },
-      {
-        "id": "isc2-certified-in-cybersecurity",
-        "name": "(ISC)Â² CC",
-        "provider": "ISC2",
-        "url": "https://www.isc2.org/"
-      },
-      {
-        "id": "google-cybersecurity-professional",
-        "name": "Google Cybersecurity Certificate",
-        "provider": "Google",
-        "url": "https://grow.google/"
-      }
     ],
     "steps": [
       {
@@ -591,26 +551,6 @@ export const roadmapsData = [
       "Cloud Basics",
       "Scripting (Python/Bash)"
     ],
-    "relatedCertifications": [
-      {
-        "id": "aws-cloud-practitioner",
-        "name": "AWS Certified Cloud Practitioner",
-        "provider": "AWS",
-        "url": "https://aws.amazon.com/"
-      },
-      {
-        "id": "aws-solutions-architect-associate",
-        "name": "AWS Solutions Architect â€“ Associate",
-        "provider": "AWS",
-        "url": "https://aws.amazon.com/"
-      },
-      {
-        "id": "microsoft-azure-fundamentals",
-        "name": "Microsoft Azure Fundamentals (AZ-900)",
-        "provider": "Microsoft",
-        "url": "https://learn.microsoft.com/"
-      }
-    ],
     "steps": [
       {
         "number": 1,
@@ -856,26 +796,6 @@ export const roadmapsData = [
       "Excel & Spreadsheets",
       "SQL",
       "Python for Data"
-    ],
-    "relatedCertifications": [
-      {
-        "id": "google-data-analytics",
-        "name": "Google Data Analytics",
-        "provider": "Google",
-        "url": "https://grow.google/"
-      },
-      {
-        "id": "microsoft-power-bi",
-        "name": "Microsoft Power BI (PL-300)",
-        "provider": "Microsoft",
-        "url": "https://learn.microsoft.com/"
-      },
-      {
-        "id": "tableau-data-analyst",
-        "name": "Tableau Certified Data Analyst",
-        "provider": "Tableau",
-        "url": "https://www.tableau.com/"
-      }
     ],
     "steps": [
       {
@@ -1123,20 +1043,6 @@ export const roadmapsData = [
       "Data Wrangling",
       "Machine Learning Basics"
     ],
-    "relatedCertifications": [
-      {
-        "id": "ibm-data-science-professional",
-        "name": "IBM Data Science Professional",
-        "provider": "IBM",
-        "url": "https://www.coursera.org/"
-      },
-      {
-        "id": "tensorflow-developer",
-        "name": "TensorFlow Developer Certificate",
-        "provider": "Google",
-        "url": "https://www.tensorflow.org/"
-      }
-    ],
     "steps": [
       {
         "number": 1,
@@ -1382,26 +1288,6 @@ export const roadmapsData = [
       "Networking Basics",
       "Routing & Switching",
       "Linux"
-    ],
-    "relatedCertifications": [
-      {
-        "id": "cisco-ccna",
-        "name": "Cisco CCNA",
-        "provider": "Cisco Networking Academy",
-        "url": "https://www.cisco.com/"
-      },
-      {
-        "id": "cisco-ccnp-enterprise",
-        "name": "Cisco CCNP Enterprise",
-        "provider": "Cisco Networking Academy",
-        "url": "https://www.cisco.com/"
-      },
-      {
-        "id": "comptia-network-plus",
-        "name": "CompTIA Network+",
-        "provider": "CompTIA",
-        "url": "https://www.comptia.org/"
-      }
     ],
     "steps": [
       {
@@ -1649,26 +1535,6 @@ export const roadmapsData = [
       "Linux",
       "Database Administration"
     ],
-    "relatedCertifications": [
-      {
-        "id": "oracle-database-administration",
-        "name": "Oracle DB Admin Associate",
-        "provider": "Oracle",
-        "url": "https://education.oracle.com/"
-      },
-      {
-        "id": "microsoft-sql-server",
-        "name": "Microsoft SQL Server Admin",
-        "provider": "Microsoft",
-        "url": "https://learn.microsoft.com/"
-      },
-      {
-        "id": "mongodb-developer",
-        "name": "MongoDB Developer",
-        "provider": "MongoDB",
-        "url": "https://learn.mongodb.com/"
-      }
-    ],
     "steps": [
       {
         "number": 1,
@@ -1914,26 +1780,6 @@ export const roadmapsData = [
       "Operating Systems",
       "Networking Basics",
       "Hardware"
-    ],
-    "relatedCertifications": [
-      {
-        "id": "comptia-a-plus",
-        "name": "CompTIA A+",
-        "provider": "CompTIA",
-        "url": "https://www.comptia.org/"
-      },
-      {
-        "id": "microsoft-365-fundamentals",
-        "name": "Microsoft 365 Fundamentals",
-        "provider": "Microsoft",
-        "url": "https://learn.microsoft.com/"
-      },
-      {
-        "id": "cisco-ccst-it-support",
-        "name": "Cisco CCST IT Support",
-        "provider": "Cisco Networking Academy",
-        "url": "https://www.cisco.com/"
-      }
     ],
     "steps": [
       {
@@ -2181,20 +2027,6 @@ export const roadmapsData = [
       "APIs & Networking",
       "State Management"
     ],
-    "relatedCertifications": [
-      {
-        "id": "flutter-developer-certificate",
-        "name": "Flutter Developer Certificate",
-        "provider": "Google",
-        "url": "https://developers.google.com/"
-      },
-      {
-        "id": "google-associate-android-developer",
-        "name": "Associate Android Developer",
-        "provider": "Google",
-        "url": "https://developers.google.com/"
-      }
-    ],
     "steps": [
       {
         "number": 1,
@@ -2441,14 +2273,6 @@ export const roadmapsData = [
       "Unity / Unreal",
       "Game Physics"
     ],
-    "relatedCertifications": [
-      {
-        "id": "unity-certified-developer",
-        "name": "Unity Certified Associate",
-        "provider": "Unity",
-        "url": "https://unity.com/"
-      }
-    ],
     "steps": [
       {
         "number": 1,
@@ -2694,26 +2518,6 @@ export const roadmapsData = [
       "Windows Server",
       "Active Directory",
       "Scripting"
-    ],
-    "relatedCertifications": [
-      {
-        "id": "redhat-rhcsa",
-        "name": "Red Hat RHCSA",
-        "provider": "Red Hat",
-        "url": "https://www.redhat.com/"
-      },
-      {
-        "id": "linux-foundation-lfcs",
-        "name": "LFCS Sysadmin",
-        "provider": "Linux Foundation",
-        "url": "https://training.linuxfoundation.org/"
-      },
-      {
-        "id": "comptia-server-plus",
-        "name": "CompTIA Server+",
-        "provider": "CompTIA",
-        "url": "https://www.comptia.org/"
-      }
     ],
     "steps": [
       {
@@ -2972,4 +2776,3 @@ export function getRoadmapById(id) {
   const targetId = roadmapAliases[id] || id;
   return roadmapsData.find((r) => r.id === targetId) || roadmapsData.find((r) => r.id === id) || roadmapsData[0];
 }
-

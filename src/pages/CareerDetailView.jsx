@@ -1,19 +1,12 @@
 import React from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { getCareerById } from '../data/careersData.js';
-import { certificationProviders, certifications, certificationVideos } from '../data/certifications.js';
-import { getYouTubeVideoId, isSafeHttpsUrl, isSafeYouTubeUrl } from '../utils/contentUtils.js';
+import { certificationVideos } from '../data/certifications.js';
+import { getYouTubeVideoId, isSafeYouTubeUrl } from '../utils/contentUtils.js';
+import { getCertificationsByCareerId } from '../utils/certificationUtils.js';
+import CertificationRecommendations from '../components/catalog/CertificationRecommendations.jsx';
 import { usePageMeta } from '../utils/pageMeta.js';
 import { Icon } from '../components/ui/Icon.jsx';
-
-function providerInitials(provider) {
-  return provider
-    .split(/\s+/)
-    .map((word) => word[0])
-    .join('')
-    .slice(0, 3)
-    .toUpperCase();
-}
 
 export default function CareerDetailView() {
   const { id } = useParams();
@@ -36,22 +29,8 @@ export default function CareerDetailView() {
     );
   }
 
-  // Filter certifications matching category or career path
-  const recommendedCerts = certifications
-    .filter((cert) => {
-      const matchesCategory =
-        cert.category === career.category ||
-        (career.category === 'software' && cert.category === 'engineering');
-      const matchesPath = cert.recommendedCareerPaths?.includes(career.id) || cert.recommendedCareerPaths?.includes(career.category);
-      return matchesCategory || matchesPath;
-    })
-    .slice(0, 6);
-
-  // Fallback to general certifications if fewer than 3
-  const displayCerts = recommendedCerts.length >= 3 ? recommendedCerts : certifications.slice(0, 6);
-
-  // Filter videos connected to display certs or general videos
-  const certIdSet = new Set(displayCerts.map((c) => c.id));
+  const displayCerts = getCertificationsByCareerId(career.id);
+  const certIdSet = new Set(displayCerts.map((certification) => certification.id));
   const recommendedVideosList = certificationVideos
     .filter((v) => certIdSet.has(v.certificationId) && isSafeYouTubeUrl(v.youtubeUrl))
     .slice(0, 4);
@@ -201,52 +180,7 @@ export default function CareerDetailView() {
         </div>
       </section>
 
-      {/* Recommended Certifications Grid */}
-      <section className="career-section-block">
-        <div className="section-header-block">
-          <h2>Recommended Certifications</h2>
-          <p>Validate your skills with industry certifications</p>
-        </div>
-
-        <div className="certification-recommendations-grid">
-          {displayCerts.map((cert) => {
-            const providerInfo = certificationProviders[cert.provider];
-            return (
-              <div className="glass-card cert-recommendation-card" key={cert.id}>
-                <div className="cert-rec-header">
-                  <div className="provider-badge">
-                    {providerInitials(cert.provider)}
-                  </div>
-                  <span className="cert-provider-name">{cert.provider}</span>
-                </div>
-
-                <h3 className="cert-rec-title">{cert.name}</h3>
-                <p className="cert-rec-desc">{cert.description}</p>
-
-                <div className="cert-rec-tags">
-                  <span className="cert-tag">{cert.provider}</span>
-                  <span className="cert-tag cert-tag--diff">{cert.difficulty}</span>
-                  {cert.costType ? <span className="cert-tag">{cert.costType}</span> : null}
-                </div>
-
-                <div className="cert-rec-footer">
-                  <span className="cert-duration"><Icon name="timer" size={15} /> {cert.duration}</span>
-                  {isSafeHttpsUrl(cert.officialUrl) ? (
-                    <a
-                      className="hero-btn hero-btn--primary cert-view-btn"
-                      href={cert.officialUrl}
-                      rel="noopener noreferrer"
-                      target="_blank"
-                    >
-                      View Certification <Icon name="external" size={15} />
-                    </a>
-                  ) : null}
-                </div>
-              </div>
-            );
-          })}
-        </div>
-      </section>
+      <CertificationRecommendations careerId={career.id} />
 
       {/* Recommended Videos Grid */}
       {recommendedVideosList.length ? (

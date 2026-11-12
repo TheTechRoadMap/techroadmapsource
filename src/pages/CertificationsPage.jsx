@@ -1,19 +1,25 @@
 import React, { useEffect, useMemo, useState } from 'react';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import CertificationFolder from '../components/catalog/CertificationFolder.jsx';
 import {
   certificationCategories,
   certificationProviders,
   loadCertificationCatalog,
 } from '../data/certifications.js';
+import { careers } from '../data/careersData.js';
+import { roadmapsData } from '../data/roadmapsData.js';
 import { filterCertifications, uniqueValues } from '../utils/contentUtils.js';
+import { getCertificationsByRoadmapId } from '../utils/certificationUtils.js';
 import { usePageMeta } from '../utils/pageMeta.js';
 
-const initialFilters = {
+const emptyFilters = {
   search: '',
   provider: 'all',
   category: 'all',
   difficulty: 'all',
   costType: 'all',
+  credentialType: 'all',
+  careerPath: 'all',
 };
 
 function CertificationSkeleton() {
@@ -28,8 +34,21 @@ function CertificationSkeleton() {
 }
 
 export default function CertificationsPage() {
+  const location = useLocation();
+  const [searchParams] = useSearchParams();
+  const requestedCareer = searchParams.get('career');
+  const requestedRoadmap = searchParams.get('roadmap');
+  const initialCareerPath =
+    requestedRoadmap ??
+    careers.find((career) => career.id === requestedCareer)?.roadmapId ??
+    'all';
   const [items, setItems] = useState([]);
-  const [filters, setFilters] = useState(initialFilters);
+  const [filters, setFilters] = useState(() => ({
+    ...emptyFilters,
+    careerPath: roadmapsData.some((roadmap) => roadmap.id === initialCareerPath)
+      ? initialCareerPath
+      : 'all',
+  }));
   const [status, setStatus] = useState('loading');
 
   usePageMeta(
@@ -57,9 +76,18 @@ export default function CertificationsPage() {
     };
   }, []);
 
-  const filteredItems = useMemo(() => filterCertifications(items, filters), [items, filters]);
+  const filteredItems = useMemo(() => {
+    const pathItems = filters.careerPath === 'all'
+      ? items
+      : getCertificationsByRoadmapId(filters.careerPath, items.length);
+    return filterCertifications(pathItems, filters);
+  }, [items, filters]);
   const providers = useMemo(() => uniqueValues(items, 'provider'), [items]);
   const costTypes = useMemo(() => uniqueValues(items, 'costType'), [items]);
+  const credentialTypes = useMemo(() => uniqueValues(items, 'credentialType'), [items]);
+  const activeFilterCount = Object.entries(filters).filter(([key, value]) => (
+    value !== emptyFilters[key]
+  )).length;
   const groupedProviders = useMemo(() => {
     const providerOrder = Object.keys(certificationProviders);
     const groups = new Map();
@@ -88,8 +116,20 @@ export default function CertificationsPage() {
       <header className="header">
         <span className="eyebrow">Credential explorer</span>
         <h1>Certifications &amp; Programmes</h1>
-        <p>Open an organisation folder, choose an opportunity, then continue to its official website.</p>
+        <p>
+          Compare industry certifications, professional certificates, courses, and learning programmes.
+          Check each provider page for current fees, enrolment dates, and regional availability.
+        </p>
       </header>
+
+      {/* {status === 'ready' ? (
+        <section className="catalog-statistics" aria-label="Catalog overview">
+          <div><strong>{items.length}</strong><span>catalog opportunities</span></div>
+          <div><strong>{providers.length}</strong><span>providers</span></div>
+          <div><strong>{items.filter((item) => item.costType === 'Free').length}</strong><span>listed as free</span></div>
+          <p>Free learning does not necessarily mean a proctored certification exam is free.</p>
+        </section>
+      ) : null} */}
 
       <section className="search-filter certification-filters" aria-label="Certification filters">
         <label>
@@ -113,7 +153,7 @@ export default function CertificationsPage() {
           </select>
         </label>
         <label>
-          <span>Career category</span>
+          <span>Technology category</span>
           <select onChange={(event) => updateFilter('category', event.target.value)} value={filters.category}>
             <option value="all">All categories</option>
             {Object.entries(certificationCategories).map(([value, label]) => (
@@ -143,7 +183,37 @@ export default function CertificationsPage() {
             ))}
           </select>
         </label>
+        <label>
+          <span>Credential type</span>
+          <select
+            onChange={(event) => updateFilter('credentialType', event.target.value)}
+            value={filters.credentialType}
+          >
+            <option value="all">All credential types</option>
+            {credentialTypes.map((credentialType) => (
+              <option key={credentialType} value={credentialType}>{credentialType}</option>
+            ))}
+          </select>
+        </label>
+        <label>
+          <span>Career path</span>
+          <select
+            onChange={(event) => updateFilter('careerPath', event.target.value)}
+            value={filters.careerPath}
+          >
+            <option value="all">All career paths</option>
+            {roadmapsData.map((roadmap) => (
+              <option key={roadmap.id} value={roadmap.id}>{roadmap.title}</option>
+            ))}
+          </select>
+        </label>
       </section>
+
+      {activeFilterCount ? (
+        <button className="button-link button-link--secondary certification-filter-reset" onClick={() => setFilters(emptyFilters)} type="button">
+          Clear {activeFilterCount === 1 ? 'filter' : 'filters'}
+        </button>
+      ) : null}
 
       {status === 'loading' ? (
         <section className="certification-grid" aria-label="Loading certifications" aria-busy="true">
@@ -175,6 +245,7 @@ export default function CertificationsPage() {
                   key={provider}
                   provider={provider}
                   providerDetails={certificationProviders[provider]}
+                  returnTo={`${location.pathname}${location.search}`}
                 />
               ))}
             </section>
@@ -182,7 +253,7 @@ export default function CertificationsPage() {
             <section className="roadmap-section empty-state">
               <h2 className="section-title">No opportunities found</h2>
               <p>Try a different search term or clear one of the filters.</p>
-              <button className="button-link button-reset" onClick={() => setFilters(initialFilters)} type="button">
+              <button className="button-link button-reset" onClick={() => setFilters(emptyFilters)} type="button">
                 Clear all filters
               </button>
             </section>
