@@ -6,6 +6,7 @@ import {
   GraduationCap,
   ShieldCheck,
 } from 'lucide-react';
+import { FaAws, FaMicrosoft } from 'react-icons/fa6';
 import {
   SiCisco,
   SiCodecademy,
@@ -13,8 +14,10 @@ import {
   SiCoursera,
   SiDocker,
   SiFreecodecamp,
+  SiFlutter,
   SiGithub,
   SiGoogle,
+  SiGooglecloud,
   SiIsc2,
   SiLinuxfoundation,
   SiMongodb,
@@ -24,16 +27,21 @@ import {
 import { isSafeHttpsUrl } from '../../utils/contentUtils.js';
 
 const providerIcons = {
+  amazonwebservices: FaAws,
+  aws: FaAws,
   cisco: SiCisco,
   codecademy: SiCodecademy,
   comptia: SiComptia,
   coursera: SiCoursera,
   docker: SiDocker,
   freecodecamp: SiFreecodecamp,
+  flutter: SiFlutter,
   github: SiGithub,
   google: SiGoogle,
+  googlecloud: SiGooglecloud,
   isc2: SiIsc2,
   linuxfoundation: SiLinuxfoundation,
+  microsoft: FaMicrosoft,
   mongodb: SiMongodb,
   redhat: SiRedhat,
   unity: SiUnity,
@@ -58,6 +66,10 @@ function getFallbackIcon(provider) {
 
 export default function ProviderIcon({ iconKey, provider, logoUrl, size = 26 }) {
   const [imageFailed, setImageFailed] = useState(false);
+  if (iconKey === 'oracle') {
+    return <span aria-hidden="true" className="provider-logo__wordmark">ORACLE</span>;
+  }
+
   const BrandIcon = iconKey === 'image' ? null : providerIcons[iconKey] ?? providerIcons[provider];
   const FallbackIcon = getFallbackIcon(provider);
   const canUseImage = !BrandIcon && !imageFailed && isSafeHttpsUrl(logoUrl);

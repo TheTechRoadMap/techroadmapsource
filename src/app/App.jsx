@@ -11,6 +11,7 @@ const About = lazy(() => import('../pages/About.jsx'));
 const CareerDetailView = lazy(() => import('../pages/CareerDetailView.jsx'));
 const CareersPage = lazy(() => import('../pages/CareersPage.jsx'));
 const CertificationsPage = lazy(() => import('../pages/CertificationsPage.jsx'));
+const CertificationDetailPage = lazy(() => import('../pages/CertificationDetailPage.jsx'));
 const FindPathPage = lazy(() => import('../pages/FindPathPage.jsx'));
 const Home = lazy(() => import('../pages/Home.jsx'));
 const NewsPage = lazy(() => import('../pages/NewsPage.jsx'));
@@ -51,6 +52,7 @@ export default function App() {
             <Route element={<About />} path="about" />
             <Route element={<FindPathPage />} path="find-my-path" />
             <Route element={<CertificationsPage />} path="certifications" />
+            <Route element={<CertificationDetailPage />} path="certifications/:id" />
             <Route element={<NewsPage />} path="news" />
             <Route element={<NotFound />} path="*" />
           </Route>

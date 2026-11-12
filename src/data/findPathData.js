@@ -1,3 +1,5 @@
+import { getRoadmapIdsForCareerPath } from '../utils/certificationUtils.js';
+
 export const findPathQuestions = [
   {
     id: 'interest',
@@ -50,8 +52,10 @@ export function calculatePathRecommendations(answers, roadmaps) {
   Object.entries(answers).forEach(([questionId, optionId]) => {
     const question = findPathQuestions.find((item) => item.id === questionId);
     const option = question?.options.find((item) => item.id === optionId);
-    Object.entries(option?.scores ?? {}).forEach(([roadmapId, score]) => {
-      scores.set(roadmapId, (scores.get(roadmapId) ?? 0) + score);
+    Object.entries(option?.scores ?? {}).forEach(([careerPathId, score]) => {
+      getRoadmapIdsForCareerPath(careerPathId).forEach((roadmapId) => {
+        scores.set(roadmapId, (scores.get(roadmapId) ?? 0) + score);
+      });
     });
   });
 
