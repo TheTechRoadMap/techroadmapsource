@@ -6,6 +6,7 @@ import {
   useLocation,
 } from 'react-router-dom';
 import Layout from '../components/layout/Layout.jsx';
+import DeveloperToolsDeterrent from '../security/DeveloperToolsDeterrent.jsx';
 
 const About = lazy(() => import('../pages/About.jsx'));
 const CareerDetailView = lazy(() => import('../pages/CareerDetailView.jsx'));
@@ -39,25 +40,28 @@ function ScrollToTop() {
 
 export default function App() {
   return (
-    <BrowserRouter>
-      <ScrollToTop />
-      <Suspense fallback={<PageLoading />}>
-        <Routes>
-          <Route element={<Layout />} path="/">
-            <Route element={<Home />} index />
-            <Route element={<RoadmapsPage />} path="roadmaps" />
-            <Route element={<RoadmapDetailView />} path="roadmaps/:id" />
-            <Route element={<CareersPage />} path="careers" />
-            <Route element={<CareerDetailView />} path="careers/:id" />
-            <Route element={<About />} path="about" />
-            <Route element={<FindPathPage />} path="find-my-path" />
-            <Route element={<CertificationsPage />} path="certifications" />
-            <Route element={<CertificationDetailPage />} path="certifications/:id" />
-            <Route element={<NewsPage />} path="news" />
-            <Route element={<NotFound />} path="*" />
-          </Route>
-        </Routes>
-      </Suspense>
-    </BrowserRouter>
+    <>
+      <DeveloperToolsDeterrent />
+      <BrowserRouter>
+        <ScrollToTop />
+        <Suspense fallback={<PageLoading />}>
+          <Routes>
+            <Route element={<Layout />} path="/">
+              <Route element={<Home />} index />
+              <Route element={<RoadmapsPage />} path="roadmaps" />
+              <Route element={<RoadmapDetailView />} path="roadmaps/:id" />
+              <Route element={<CareersPage />} path="careers" />
+              <Route element={<CareerDetailView />} path="careers/:id" />
+              <Route element={<About />} path="about" />
+              <Route element={<FindPathPage />} path="find-my-path" />
+              <Route element={<CertificationsPage />} path="certifications" />
+              <Route element={<CertificationDetailPage />} path="certifications/:id" />
+              <Route element={<NewsPage />} path="news" />
+              <Route element={<NotFound />} path="*" />
+            </Route>
+          </Routes>
+        </Suspense>
+      </BrowserRouter>
+    </>
   );
 }

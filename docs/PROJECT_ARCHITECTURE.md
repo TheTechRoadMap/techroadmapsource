@@ -26,3 +26,5 @@ The news data layer (`src/data/techNews.js`) fetches stories from the public Hac
 ## Tooling
 
 The package scripts are `npm run dev`, `npm test` (Node's built-in test runner), `npm run build`, `npm run preview`, and `npm run check` (tests followed by production build). React Router, React, Vite, Lucide, and React Icons are existing dependencies.
+
+Production source-map and deployment security-header guidance, plus the production-only developer-tools deterrent, are documented in [Production security](./PRODUCTION_SECURITY.md).
