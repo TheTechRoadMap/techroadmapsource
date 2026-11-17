@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:ital,wght@0,600;0,700;0,800;1,700&display=swap');
 
 :root {
-  color: #e5eefb;
+  color: #dce6f4;
   background: #08111f;
   --font-heading: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
@@ -17,9 +17,19 @@
   --panel-soft: rgba(255, 255, 255, 0.05);
   --panel-strong: rgba(255, 255, 255, 0.08);
   --border: rgba(148, 163, 184, 0.2);
+<<<<<<< Updated upstream:src/index.css
   --text-primary: #e5eefb;
   --text-secondary: #a9bbd4;
   --text-muted: #7e90ac;
+=======
+
+  /* ── Colors: Text ────────────────────────────────────────────── */
+  --text-primary: #dce6f4;
+  --text-secondary: #9aacc5;
+  --text-muted: #7486a1;
+
+  /* ── Colors: Brand (Blue) ────────────────────────────────────── */
+>>>>>>> Stashed changes:src/styles/index.css
   --brand: #60a5fa;
   --brand-soft: #93c5fd;
   --success: #4ade80;
@@ -2232,6 +2242,210 @@ select:focus {
   }
 }
 
+<<<<<<< Updated upstream:src/index.css
+=======
+[data-theme="light"] .home-cta-banner {
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-theme="light"] .home-cta-title {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="light"] .home-cta-subtitle {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="light"] .quiz-fieldset legend,
+[data-theme="light"] .match-intro h2,
+[data-theme="light"] .match-card h2 {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .quiz-progress,
+[data-theme="light"] .match-intro p,
+[data-theme="light"] .match-card p {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .quiz-option {
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .quiz-option:hover,
+[data-theme="light"] .quiz-option:focus-visible,
+[data-theme="light"] .quiz-option.is-selected {
+  background: #eff6ff !important;
+  border-color: #2563eb !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .quiz-option__marker {
+  border-color: #2563eb;
+}
+
+[data-theme="light"] .menu-toggle {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  color: #0f172a;
+}
+
+[data-theme="light"] .menu-toggle:hover,
+[data-theme="light"] .menu-toggle:focus-visible {
+  background: #f1f5f9;
+  border-color: #2563eb;
+  color: #1d4ed8;
+}
+
+[data-theme="light"] .hero-step-pill {
+  color: #0f172a !important;
+}
+
+@media (min-width: 721px) {
+  .nav-panel {
+    display: flex;
+  }
+}
+
+@media (max-width: 720px) {
+  .site-nav--menu-open .brand-mark {
+    visibility: hidden;
+  }
+
+  .roadmaps-page .roadmap-category-pills {
+    flex: none;
+  }
+
+  .roadmaps-page .roadmap-card__top {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .home-hero {
+    padding: 2rem 1.1rem 1.5rem;
+    border-radius: 1rem;
+  }
+
+  .home-hero__title {
+    font-size: clamp(2.15rem, 11vw, 3rem);
+  }
+
+  .home-hero__subtitle {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .home-hero__actions,
+  .hero-btn {
+    width: 100%;
+  }
+
+  .home-hero__actions {
+    gap: 0.65rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .home-hero__stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
+  }
+
+  .hero-stat-item {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+
+  .hero-progression-card {
+    max-width: none;
+    padding: 1rem;
+  }
+
+  .hero-step-row {
+    align-items: flex-start;
+  }
+
+  .hero-step-pill {
+    min-width: 0;
+    padding: 0.65rem 0.8rem;
+    overflow-wrap: anywhere;
+  }
+
+  .home-cta-banner {
+    padding: 2.25rem 1.1rem;
+  }
+
+  .home-cta-title {
+    font-size: clamp(1.7rem, 8vw, 2.35rem);
+  }
+
+  .quiz-card {
+    padding: 1rem;
+  }
+
+  .quiz-fieldset legend {
+    font-size: 1.2rem;
+    overflow-wrap: anywhere;
+  }
+
+  .quiz-option {
+    align-items: flex-start;
+    min-height: 3.25rem;
+    padding: 0.85rem;
+    overflow-wrap: anywhere;
+  }
+
+  .quiz-actions {
+    flex-direction: column-reverse;
+  }
+
+  .quiz-actions .button-link {
+    width: 100%;
+  }
+}
+
+[data-theme="light"] .home-cta-banner {
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-theme="light"] .home-cta-title,
+[data-theme="light"] .quiz-fieldset legend {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="light"] .home-cta-subtitle,
+[data-theme="light"] .quiz-progress {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="light"] .quiz-option {
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: var(--text-primary) !important;
+}
+
+[data-theme="light"] .quiz-option:hover,
+[data-theme="light"] .quiz-option:focus-visible,
+[data-theme="light"] .quiz-option.is-selected {
+  background: #eff6ff !important;
+  border-color: #2563eb !important;
+  color: var(--text-primary) !important;
+}
+
+[data-theme="light"] .quiz-actions .button-link--secondary {
+  background: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+  color: #334155 !important;
+}
+
+>>>>>>> Stashed changes:src/styles/index.css
 
 /* ==========================================================================
    GLOBAL TYPOGRAPHY & VISUAL HIERARCHY OVERHAUL
@@ -3276,11 +3490,16 @@ p, .header p, .roadmap-header p, .detail-summary, .roadmap-card__content p {
 /* ─── LIGHT MODE THEME OVERRIDES ─────────────────────────────────────────── */
 
 html[data-theme="light"] {
+<<<<<<< Updated upstream:src/index.css
   background:
     radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 30%),
     radial-gradient(circle at top right, rgba(14, 165, 233, 0.06), transparent 30%),
     linear-gradient(140deg, #f8fafc 0%, #f1f5f9 55%, #e2e8f0 100%);
   color: #0f172a;
+=======
+  background: #f8fafc;
+  color: var(--text-primary);
+>>>>>>> Stashed changes:src/styles/index.css
 }
 
 [data-theme="light"] {
@@ -3290,9 +3509,9 @@ html[data-theme="light"] {
   --panel-soft: #f8fafc;
   --panel-strong: #f1f5f9;
   --border: rgba(203, 213, 225, 0.8);
-  --text-primary: #0f172a;
-  --text-secondary: #334155;
-  --text-muted: #64748b;
+  --text-primary: #1e293b;
+  --text-secondary: #475569;
+  --text-muted: #718096;
   --brand: #2563eb;
   --brand-soft: #1d4ed8;
   --success: #16a34a;
@@ -3303,7 +3522,7 @@ html[data-theme="light"] {
 }
 
 [data-theme="light"] body {
-  color: #0f172a;
+  color: var(--text-primary);
 }
 
 /* Header Nav in Light Mode */
@@ -5204,13 +5423,13 @@ html[data-theme="light"] {
   font-family: var(--font-heading);
   font-size: clamp(2rem, 3.8vw, 2.65rem);
   font-weight: 800;
-  color: #ffffff;
+  color: var(--text-primary);
   margin: 0;
 }
 
 .home-cta-subtitle {
   font-size: 1.05rem;
-  color: #94a3b8;
+  color: var(--text-secondary);
   line-height: 1.6;
   margin: 0 0 1rem;
   max-width: 36rem;
@@ -5298,3 +5517,375 @@ html[data-theme="light"] {
 }
 
 
+<<<<<<< Updated upstream:src/index.css
+=======
+/* ==========================================================================
+   DESIGN SYSTEM POLISH — Page Loading / Focus / Accessibility
+   ========================================================================== */
+
+/* Page loading state spinner */
+.page-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  color: var(--text-muted);
+  font-family: var(--font-body);
+  font-size: var(--text-sm);
+  letter-spacing: 0.04em;
+}
+
+.page-loading::before {
+  content: '';
+  display: inline-block;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 0.75rem;
+  border: 2px solid var(--border);
+  border-top-color: var(--brand);
+  border-radius: 50%;
+  animation: spin 0.7s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Desktop nav active state: subtle brand underline for clarity */
+@media (min-width: 721px) {
+  .nav-link.is-active {
+    border-bottom-color: var(--brand);
+  }
+}
+
+/* Ensure all interactive focus rings are consistent */
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid var(--brand);
+  outline-offset: 2px;
+}
+
+/* Light mode: fix home career card link color */
+[data-theme="light"] .home-section-link,
+[data-theme="light"] .home-career-card__link {
+  color: var(--brand) !important;
+}
+
+[data-theme="light"] .home-section-link:hover,
+[data-theme="light"] .home-career-card__link:hover {
+  color: var(--brand-strong) !important;
+}
+
+/* Final light-mode contrast audit. Keep image-overlay content white; convert
+   content rendered on light panels to the shared readable text colors. */
+[data-theme="light"] .section-header-block h2,
+[data-theme="light"] .cert-rec-title,
+[data-theme="light"] .video-title,
+[data-theme="light"] .career-explorer-header h1,
+[data-theme="light"] .career-card__title,
+[data-theme="light"] .career-detail-title,
+[data-theme="light"] .career-info-card__header h3,
+[data-theme="light"] .career-detail-card h2,
+[data-theme="light"] .career-detail-card h3,
+[data-theme="light"] .roadmap-detail__title,
+[data-theme="light"] .roadmap-progress-percentage,
+[data-theme="light"] .step-card__title,
+[data-theme="light"] .current-step-title,
+[data-theme="light"] .related-block-title,
+[data-theme="light"] .related-cert-name,
+[data-theme="light"] .resource-title,
+[data-theme="light"] .news-card__body h3 {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .career-card__blurb,
+[data-theme="light"] .career-detail-summary,
+[data-theme="light"] .salary-tiers p,
+[data-theme="light"] .what-they-do-desc,
+[data-theme="light"] .responsibility-list li,
+[data-theme="light"] .roadmap-detail__subtitle,
+[data-theme="light"] .step-card__desc,
+[data-theme="light"] .current-step-sub,
+[data-theme="light"] .resource-desc,
+[data-theme="light"] .news-card__body p {
+  color: #334155 !important;
+}
+
+[data-theme="light"] .career-meta-pill,
+[data-theme="light"] .env-pill,
+[data-theme="light"] .tech-pill,
+[data-theme="light"] .resource-type-badge,
+[data-theme="light"] .career-action-btn,
+[data-theme="light"] .career-search-input {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .career-detail-header__actions .hero-btn--secondary,
+[data-theme="light"] .career-action-btn {
+  background: #f1f5f9 !important;
+  border-color: #cbd5e1 !important;
+}
+
+[data-theme="light"] .career-detail-header__actions .hero-btn--secondary:hover,
+[data-theme="light"] .career-action-btn:hover {
+  background: #e2e8f0 !important;
+  border-color: #2563eb !important;
+  color: #1d4ed8 !important;
+}
+
+[data-theme="light"] .resource-type-badge {
+  background: #f1f5f9 !important;
+  border: 1px solid #cbd5e1;
+}
+
+[data-theme="light"] .roadmap-progress-label,
+[data-theme="light"] .sidebar-eyebrow,
+[data-theme="light"] .step-number-text,
+[data-theme="light"] .cert-provider-name,
+[data-theme="light"] .video-channel,
+[data-theme="light"] .cert-duration {
+  color: #64748b !important;
+}
+
+[data-theme="light"] .career-category-badge,
+[data-theme="light"] .career-tag--category,
+[data-theme="light"] .roadmap-tag--category {
+  color: #1d4ed8 !important;
+}
+
+[data-theme="light"] .hero-stat-num {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .hero-stat-label {
+  color: #475569 !important;
+}
+
+/* Final navigation, news, and roadmap layout rules */
+.news-heading-row {
+  align-items: flex-start;
+  text-align: left;
+}
+
+.news-heading-row > div:first-child {
+  text-align: left;
+}
+
+@media (min-width: 721px) {
+  .site-nav__controls {
+    order: 3;
+  }
+
+  .site-nav .nav-panel {
+    order: 2;
+  }
+}
+
+@media (max-width: 720px) {
+  .site-nav {
+    align-items: center;
+  }
+
+  .roadmap-search {
+    flex-basis: 100%;
+    width: 100%;
+  }
+
+  .roadmap-grid {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 1rem;
+  }
+
+  .roadmap-category-pills {
+    width: 100%;
+  }
+
+  .site-nav__controls {
+    margin-left: auto;
+  }
+
+  .site-nav__controls .theme-toggle-btn {
+    width: auto;
+    min-height: 2.5rem;
+    padding: 0.45rem 0.7rem;
+  }
+
+  .site-nav__controls .theme-toggle-btn span {
+    display: none;
+  }
+
+  .site-nav .nav-panel {
+    position: absolute;
+    top: calc(100% + 0.5rem);
+    right: 1rem;
+    left: 1rem;
+    z-index: 20;
+    width: auto;
+    padding: 0.75rem;
+    border: 1px solid var(--border);
+    border-radius: 0.85rem;
+    background: var(--bg-deep);
+    box-shadow: var(--shadow-md);
+  }
+
+  .site-nav .nav-panel.is-open {
+    padding-top: 0.75rem;
+  }
+
+  [data-theme="light"] .site-nav .nav-panel {
+    background: #ffffff;
+    border-color: #cbd5e1;
+    box-shadow: 0 12px 30px rgba(15, 23, 42, 0.12);
+  }
+}
+
+[data-theme="light"] .home-cta-banner {
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, 0.08) !important;
+}
+
+[data-theme="light"] .home-cta-title {
+  color: var(--text-primary) !important;
+}
+
+[data-theme="light"] .home-cta-subtitle {
+  color: var(--text-secondary) !important;
+}
+
+[data-theme="light"] .roadmaps-page .roadmap-card__title,
+[data-theme="light"] .roadmaps-page .roadmap-card__blurb,
+[data-theme="light"] .roadmaps-page .roadmap-card__link {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .roadmaps-page .roadmap-card__blurb {
+  color: #334155 !important;
+}
+
+[data-theme="light"] .roadmaps-page .roadmap-card__link {
+  color: #2563eb !important;
+}
+
+[data-theme="light"] .quiz-fieldset legend,
+[data-theme="light"] .match-intro h2,
+[data-theme="light"] .match-card h2 {
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .quiz-progress,
+[data-theme="light"] .match-intro p,
+[data-theme="light"] .match-card p {
+  color: #475569 !important;
+}
+
+[data-theme="light"] .quiz-option {
+  background: #ffffff !important;
+  border-color: #cbd5e1 !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .quiz-option:hover,
+[data-theme="light"] .quiz-option:focus-visible,
+[data-theme="light"] .quiz-option.is-selected {
+  background: #eff6ff !important;
+  border-color: #2563eb !important;
+  color: #0f172a !important;
+}
+
+[data-theme="light"] .quiz-option__marker {
+  border-color: #2563eb;
+}
+
+@media (max-width: 720px) {
+  .site-nav--menu-open .brand-mark {
+    visibility: hidden;
+  }
+
+  .home-hero {
+    padding: 2rem 1.1rem 1.5rem;
+    border-radius: 1rem;
+  }
+
+  .home-hero__title {
+    font-size: clamp(2.15rem, 11vw, 3rem);
+  }
+
+  .home-hero__subtitle {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+  }
+
+  .home-hero__actions,
+  .hero-btn {
+    width: 100%;
+  }
+
+  .home-hero__actions {
+    gap: 0.65rem;
+    margin-bottom: 1.75rem;
+  }
+
+  .home-hero__stats {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0.8rem;
+  }
+
+  .hero-stat-item {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 0.1rem;
+  }
+
+  .hero-progression-card {
+    max-width: none;
+    padding: 1rem;
+  }
+
+  .hero-step-row {
+    align-items: flex-start;
+  }
+
+  .hero-step-pill {
+    min-width: 0;
+    padding: 0.65rem 0.8rem;
+    overflow-wrap: anywhere;
+  }
+
+  .home-cta-banner {
+    padding: 2.25rem 1.1rem;
+  }
+
+  .home-cta-title {
+    font-size: clamp(1.7rem, 8vw, 2.35rem);
+  }
+
+  .quiz-card {
+    padding: 1rem;
+  }
+
+  .quiz-fieldset legend {
+    font-size: 1.2rem;
+    overflow-wrap: anywhere;
+  }
+
+  .quiz-option {
+    align-items: flex-start;
+    min-height: 3.25rem;
+    padding: 0.85rem;
+    overflow-wrap: anywhere;
+  }
+
+  .quiz-actions {
+    flex-direction: column-reverse;
+  }
+
+  .quiz-actions .button-link {
+    width: 100%;
+  }
+}
+>>>>>>> Stashed changes:src/styles/index.css
