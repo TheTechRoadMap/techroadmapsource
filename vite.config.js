@@ -5,6 +5,9 @@ import { defineConfig } from 'vite';
 const workspaceRoot = fileURLToPath(new URL('..', import.meta.url));
 
 export default defineConfig({
+  build: {
+    sourcemap: false,
+  },
   esbuild: {
     jsx: 'automatic',
     jsxImportSource: 'react',

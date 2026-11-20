@@ -74,7 +74,7 @@ function HomeHero() {
         </h1>
         
         <p className="home-hero__subtitle">
-          Discover the right career, build real-world skills, earn certifications, create projects and prepare for your future — all in one place.
+          Discover the right career, build real-world skills, earn certifications, create projects and prepare for your future, all in one place.
         </p>
         
         <div className="home-hero__actions">

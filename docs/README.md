@@ -9,5 +9,6 @@ Current app version: **1.2.1**. The version is maintained in `package.json` and 
 - [Career and roadmap integration](./CAREER_ROADMAP_CERTIFICATION_INTEGRATION.md) explains the ID mapping and shared recommendation functions.
 - [UI/UX improvements](./UI_UX_IMPROVEMENTS.md) records catalog, responsive, and accessibility changes.
 - [Project architecture](./PROJECT_ARCHITECTURE.md) maps routes, application data, persistence, and external services.
+- [Production security](./PRODUCTION_SECURITY.md) documents the developer-tools deterrent, its limitations, and production security configuration.
 - [Changelog](./CHANGELOG.md) summarizes this update.
 - [Maintenance guide](./MAINTENANCE_GUIDE.md) gives the recurring update and validation workflow.

@@ -5845,6 +5845,44 @@ html[data-theme="light"] {
   to { transform: rotate(360deg); }
 }
 
+.developer-tools-overlay {
+  position: fixed;
+  z-index: 2147483647;
+  inset: 0;
+  display: grid;
+  width: 100vw;
+  height: 100vh;
+  height: 100dvh;
+  min-height: 100vh;
+  min-height: 100dvh;
+  place-items: center;
+  overflow: auto;
+  padding: clamp(1.5rem, 5vw, 4rem);
+  background: #000;
+  color: #fff;
+  text-align: center;
+}
+
+.developer-tools-overlay:focus {
+  outline: none;
+}
+
+.developer-tools-overlay__message {
+  width: min(100%, 42rem);
+}
+
+.developer-tools-overlay h1 {
+  margin: 0 0 1.5rem;
+  font-family: var(--font-heading);
+  font-size: clamp(1.75rem, 5vw, 3rem);
+  line-height: 1.2;
+}
+
+.developer-tools-overlay p {
+  margin: 0.75rem 0;
+  font-size: clamp(1rem, 2.4vw, 1.25rem);
+}
+
 /* Desktop nav active state: subtle brand underline for clarity */
 @media (min-width: 721px) {
   .nav-link.is-active {
